@@ -1,54 +1,18 @@
+<img src="https://cdna.artstation.com/p/assets/images/images/028/102/058/original/pixel-jeff-matrix-s.gif?1593487263" 
+     alt="Matrix GIF" 
+     width="900"
+     height="500"
+     style="display: block; margin: auto;">>
+
 # Hello, I'm Hlib Shepel
 <a href="https://www.linkedin.com/in/glebe-shepel/"><img src="https://img.shields.io/badge/-LinkedIn-0072b1?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 
-## Objective
+## About me
 
-I'm an English-Ukrainian interpreter and a Cyber Security enthusiast aiming to transition into a role of Security Operations Center (SOC) as a Tier 1 analyst.
+I'm an English-Ukrainian interpreter and a cybersecurity enthusiast aiming to transition into a Security Operations Center (SOC) Tier 1 Analyst role. I have completed HackTheBox prerequisites for the SOC Analyst role, as well as the SOC Analyst learning path. Additionally, I have listened to a series of lectures from Harvard University to reinforce my theoretical knowledge. Now, I am working on various challenges and CTF competitions to get hands-on experience and prepare for the next exams.
 
-## Skills
-
-| Skill                                         | Associated Project         |
-|-----------------------------------------------|----------------------------|
-| SIEM Implementation and Log Analysis          | <a href="https://google.com">Detection Lab</a>|
-| Network Traffic Monitoring and Attack Detection | <a href="https://google.com">Detection Lab</a>|
-
-## Tools
-
-### Network
-<div>
-    <img src="https://img.shields.io/badge/-Wireshark-1679A7?&style=for-the-badge&logo=Wireshark&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Suricata-EF3B2D?&style=for-the-badge&logo=Suricata&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Zeek-777BB4?&style=for-the-badge&logo=Zeek&logoColor=white" />
-</div>
-
-### SIEM
-<div>
-    <img src="https://img.shields.io/badge/-Splunk-000000?&style=for-the-badge&logo=Splunk&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Elastic-005571?&style=for-the-badge&logo=Elastic&logoColor=white" />
-</div>
-
-## Certifications
-[Provide certifications that you have obtained. Use ChatGPT to help create the link - Remove this afterwards]]
-<div>
-<a href="https://www.coursera.org/account/accomplishments/professional-cert/MLK4RR7MSHEV?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof" target="_blank">
-  <img src="https://img.shields.io/badge/-Security%2B-FF0000?&style=for-the-badge&logo=CompTIA&logoColor=white" alt="Security+ Certification"/>
-</a>
-
-<a href="https://academy.hackthebox.com/achievement/badge/9478df90-782f-11ef-864f-bea50ffe6cb4" target="_blank">
-  <img src="https://img.shields.io/badge/-Network%2B-007ACC?&style=for-the-badge&logo=CompTIA&logoColor=white" alt="Network+ Certification"/>
-</a>
-
-<a href="https://academy.hackthebox.com/achievement/badge/cb9b3264-dc08-11ef-864f-bea50ffe6cb4" target="_blank">
-  <img src="https://img.shields.io/badge/-A%2B-4D4D4D?&style=for-the-badge&logo=CompTIA&logoColor=white" alt="A+ Certification"/>
-</a>
-
-<a href="https://learning.edx.org/course/course-v1:HarvardX+CS50CS+Cybersecurity/home" target="_blank">
-  <img src="https://img.shields.io/badge/-CDSA-006400?&style=for-the-badge&logoColor=white" alt="CDSA Certification"/>
-</a>
-
-</div>
-
-## Projects
-- I-like-to [#HTB #DFIR]
-- Meerkat [#HTB #DFIR]
-- Splunk2 [#THM #SIEM]
+## Completed Challenges
+- <a href="I-like-to.md">I-like-to [#HTB #DFIR]
+- <a href="Meerkat.md">Meerkat [#HTB #DFIR]
+- <a href="TryHackMe_Splunk2.md">Splunk2 [#THM #SIEM]
+- <a href="Boss of the Splunk. Investigating an APT.md">Boss of the Splunk. Investigating APT [#BOTS #SIEM]
