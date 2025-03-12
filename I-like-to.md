@@ -31,7 +31,7 @@
 	
 	Answer: 12/07/2023 11:24:30
 	
-	`.\MFTECmd -f 'C:\Users\glebas\Desktop\$MFT' --de 1293` ![[Pasted image 20250210105019.png]]
+	`.\MFTECmd -f 'C:\Users\glebas\Desktop\$MFT' --de 1293` ![Pasted image 20250210105019](https://github.com/user-attachments/assets/1c60bb9f-8981-43d5-b49f-947a0b88fa3c)
 
 5. *The attacker uploaded an ASP webshell which didn't work, what is its filesize in bytes?*
 	Filtered MFT entries to display the same day when 'move.aspx' was uploaded. The next entry is another malicious file 'moveit.asp' and it has file size specified in the entry.
