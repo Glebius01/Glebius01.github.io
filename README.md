@@ -9,7 +9,7 @@
 
 ## About me
 
-I'm an English-Ukrainian interpreter and a cybersecurity enthusiast aiming to transition into a Security Operations Center (SOC) Tier 1 Analyst role. I have completed HackTheBox prerequisites for the SOC Analyst role, as well as the SOC Analyst learning path. Additionally, I have listened to a series of lectures from Harvard University to reinforce my theoretical knowledge. Now, I am working on various challenges and CTF competitions to get hands-on experience and prepare for the next exams.
+Write ups should be here
 
 ## Completed Challenges
 - <a href="I-like-to.md">I-like-to [#HTB #DFIR]
