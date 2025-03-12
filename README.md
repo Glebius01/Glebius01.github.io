@@ -2,7 +2,7 @@
      alt="Matrix GIF" 
      width="900"
      height="500"
-     style="display: block; margin: auto;">>
+     style="display: block; margin: auto;">
 
 # Hello, I'm Hlib Shepel
 <a href="https://www.linkedin.com/in/glebe-shepel/"><img src="https://img.shields.io/badge/-LinkedIn-0072b1?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
