@@ -1,6 +1,7 @@
 ---
 layout: default
 title: I-like-to
+permalink: /i-like-to/
 ---
 
 ### Summary: 
