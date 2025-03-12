@@ -1,7 +1,7 @@
 ---
 layout: default
 title: I-like-to
-permalink: https:/glebius01.github.io/i-like-to
+permalink: https://glebius01.github.io/i-like-to
 ---
 
 ### Summary: 
