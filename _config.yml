@@ -1,13 +1,4 @@
 title: Hlib`s Professional Page
 remote_theme: pages-themes/hacker@v0.2.0
 
-lsi: false
-safe: true
-source: [your repo's top level directory]
-incremental: false
-highlighter: rouge
-gist:
-  noscript: false
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
+markdown: kramdown
