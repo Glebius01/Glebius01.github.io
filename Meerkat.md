@@ -1,15 +1,12 @@
----
-dg-publish: true
----
-###### Summary 
+### Summary 
  This Sherlock is focusing on working with Zeek logs and network analysis using PCAP.
  
 [Link to this Sherlock on HTB Labs](https://app.hackthebox.com/sherlocks/552/play)
 
 I used Timeline Explorer to process alert logs because I was working on Windows VM without WSL. Alternatively, jq could be used. For network analysis I used Wireshark, but Tshark was also required to answer one of the questions.
-###### Challenge Scenario
+### Challenge Scenario
 "As a fast-growing startup, Forela has been utilising a business management platform. Unfortunately, our documentation is scarce, and our administrators aren't the most security aware. As our new security provider we'd like you to have a look at some PCAP and log data we have exported to confirm if we have (or have not) been compromised."
-###### Walkthrough
+### Walkthrough
 1. We believe our Business Management Platform server has been compromised. Please can you confirm the name of the application running?
 	While going through alert logs, I identified the following alert: `@{severity=1; signature=ET EXPLOIT Bonitasoft Authorization Bypass M1 (CVE-2022-25237); category=Attempted Administrator Privilege Gain; action=allowed; signature_id=2036818; gid=1; rev=1; metadata=}` at 2023-01-19T15:31:31.042Z
 
@@ -20,8 +17,7 @@ I used Timeline Explorer to process alert logs because I was working on Windows 
 	Answer to question 3 can be found initially during alerts analysis.
 
 4. Which string was appended to the API URL path to bypass the authorization filter by the attacker's exploit?: 
-	While reading about the exploit https://rhinosecuritylabs.com/application-security/cve-2022-25237-bonitasoft-authorization-bypass/ I found out that Bonita appends either “/i18ntranslation/../” or “;i18ntranslation” to the API URL to allow authorization to be bypassed. I correlated this info with pcap in Wireshark and found the answer.
-	![[Pasted image 20250212150133.png]]
+	While reading about the exploit https://rhinosecuritylabs.com/application-security/cve-2022-25237-bonitasoft-authorization-bypass/ I found out that Bonita appends either “/i18ntranslation/../” or “;i18ntranslation” to the API URL to allow authorization to be bypassed. I correlated this info with pcap in Wireshark and found the answer. ![Pasted image 20250212150133](https://github.com/user-attachments/assets/e672fe65-5b9f-4232-a96b-4b57c36250c6)
 
 5. How many combinations of usernames and passwords were used in the credential stuffing attack?: 
 	Not difficult question yet I stuck here and had to address the official write-up. My Wireshark display filter `http.request.full_uri == "http://forela.co.uk:8080/bonita/loginservice" && !http` contains "install" was displaying 59 entries, but there were 3 repetitions in the very end which shouldn't have been counted. After additional research I concluded that the easiest way to find the solution to this question with a filters would be through Tshark command 
@@ -30,7 +26,7 @@ I used Timeline Explorer to process alert logs because I was working on Windows 
 6. Which username and password combination was successful?
 	Looking through network logs we can see someone running a command whoami, it prompted me to follow HTTP stream and I was able to see there authentication attempt with positive response, namely status code 204.
 	
-	*The HTTP 204 No Content status code indicates that the server has successfully processed the request, but there is no content to send in the response body. This status code is particularly useful for operations that do not require the client to navigate away from the current page or display any new information. ![[Pasted image 20250216102441.png]]
+	*The HTTP 204 No Content status code indicates that the server has successfully processed the request, but there is no content to send in the response body. This status code is particularly useful for operations that do not require the client to navigate away from the current page or display any new information. !![Pasted image 20250216102441](https://github.com/user-attachments/assets/efe3bdce-b2a5-4870-9c30-21546d8fd0b6)
 
 7. If any, which text sharing site did the attacker utilise?
 	Continuing investigating Wireshark logs we are able to see a GET request with remote command execution which has a website URL that fits out description. 
