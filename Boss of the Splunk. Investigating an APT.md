@@ -1,6 +1,4 @@
----
-dg-publish: true
----
+
 #### Finding the IP Scanning Your Web Server
 
 1. Determining the sourcetypes to search provides a nice starting point for nearly every search created. Identify sourcetypes associated with the website: `index=botsv1 imreallynotbatman.com | stats count by sourcetype` 
@@ -11,28 +9,28 @@ dg-publish: true
 
 #### Identifying The Web Vulnerability Scanner
 
-1. There is acunetix_wvs_security test among the first entries in the search. Googling shows that this is automatic vulnerability scanner for web applications by Invicti. `index=botsv1 imreallynotbatman.com sourcetype="stream:http" src=40.80.148.42 | stats count by http_user_agent`
+There is acunetix_wvs_security test among the first entries in the search. Googling shows that this is automatic vulnerability scanner for web applications by Invicti. `index=botsv1 imreallynotbatman.com sourcetype="stream:http" src=40.80.148.42 | stats count by http_user_agent`
 
 #### Determining Which Web Server is the Target
-1. `index="botsv1" sourcetype="stream:http" src_ip=40.80.148.42` and investigating top 10 URI field values. This query can be modified by adding `status=200` to show only successful loads, `stats count by uri` to see what value are most frequently seen. `sort - count` to display the most frequent first.
+`index="botsv1" sourcetype="stream:http" src_ip=40.80.148.42` and investigating top 10 URI field values. This query can be modified by adding `status=200` to show only successful loads, `stats count by uri` to see what value are most frequently seen. `sort - count` to display the most frequent first.
 
 #### Identifying Where a Brute Force Attack Originated
-1. First we need to narrow our search, we can do it by taking into account: the target IP, brute force attacks usually push some information to the server using 'POST' http method request, form_data field may contain username and password key fields. Having made changes, we can get such query: `index=botsv1 sourcetype=stream:http dest="192.168.250.70" http_method=POST form_data=*username*passwd* | stats count by src  
+First we need to narrow our search, we can do it by taking into account: the target IP, brute force attacks usually push some information to the server using 'POST' http method request, form_data field may contain username and password key fields. Having made changes, we can get such query: `index=botsv1 sourcetype=stream:http dest="192.168.250.70" http_method=POST form_data=*username*passwd* | stats count by src  
 
-	Side note - The form_data field contains information being passed from the client browser to the web server. If we search the form_data, we can use wildcards to look for values that contain the strings “username" and "passwd” within the field. This could be a very expensive search done at scale which is why it is important to set the index= and the time picker to narrow the amount of data to be searched.
+Side note - The form_data field contains information being passed from the client browser to the web server. If we search the form_data, we can use wildcards to look for values that contain the strings “username" and "passwd” within the field. This could be a very expensive search done at scale which is why it is important to set the index= and the time picker to narrow the amount of data to be searched.
 
 #### Identifying the First Password Attempted in a Brute Force Attack
-2. `index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* | stats count by _time, form_data | sort _time asc | head 10`. 
-3. The password itself can be extracted using `| rex field=form_data "passwd=(?<userpassword>\w+)"`. Alternative to sort asc - reverse, and to stats count is table.
+`index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* | stats count by _time, form_data | sort _time asc | head 10`. 
+The password itself can be extracted using `| rex field=form_data "passwd=(?<userpassword>\w+)"`. Alternative to sort asc - reverse, and to stats count is table.
 ### Identifying the Password Used To Gain Access
-4. `index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* dest_headers!="*Connection: close*"  | rex field=form_data "passwd=(?<userpassword>\w+)" | table dest_headers, userpassword, src`
+`index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* dest_headers!="*Connection: close*"  | rex field=form_data "passwd=(?<userpassword>\w+)" | table dest_headers, userpassword, src`
    
-5. Another way to do it, is to stats count all the used passwords and sort them -- the password which has been used twice, was most likely successful. Please note **value(src)** which is used to search for more than 1 value in the field.
+Another way to do it, is to stats count all the used passwords and sort them -- the password which has been used twice, was most likely successful. Please note **value(src)** which is used to search for more than 1 value in the field.
 
-	`index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd*` 
-	`| rex field=form_data "passwd=(?<userpassword>\w+)"` 
-	`| stats count values(src) by userpassword`
-	`| sort - count`
+`index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd*` 
+`| rex field=form_data "passwd=(?<userpassword>\w+)"` 
+`| stats count values(src) by userpassword`
+`| sort - count`
 ### Determining The Elapsed Time Between Events
 `index=botsv1 sourcetype=stream:http`
 `| rex field=form_data "passwd=(?<userpassword>\w+)"` 
