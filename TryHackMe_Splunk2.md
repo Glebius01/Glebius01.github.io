@@ -1,6 +1,3 @@
----
-dg-publish: true
----
 ### Scenario:
 
 In this exercise, you assume the persona of Alice Bluebird, the analyst who successfully assisted Wayne Enterprises and was recommended to Grace Hoppy at Frothly (_a beer company_) to assist them with their recent issues.
@@ -65,7 +62,7 @@ What is Amber's personal email address?
 
 While investigating contents of the email exchange I have come across base64 encoded plain text. I was able to decode it easily using an online tool.
 
-![[Pasted image 20250303093556.png]]
+![Pasted image 20250303093556](https://github.com/user-attachments/assets/81df3a87-56bb-4e69-894a-17fb076c27d1)
 
 Answer: ambersthebest@yeastiebeastie.com
 
@@ -77,7 +74,7 @@ I used a hint query (to search for key words like "Amber" and "Tor"). Then, I ad
 
 	index="botsv2" "Amber" "Tor" EventCode=1 | reverse
 
-![[Pasted image 20250303100553.png]]
+![Pasted image 20250303100553](https://github.com/user-attachments/assets/c80febde-261e-4f30-a861-7c04428ef2b8)
 
 Answer: 7.0.4
 
@@ -87,7 +84,6 @@ I used number of digits and destination headers as a hint.
 
 Answer: 52.42.208.228
 
- 
 Provide the IP address of the system used to run a web vulnerability scan against www.brewertalk.com.
 
 If we type in www.brewertalk.com and look at user agents, *Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; w3af.org)* has the largest amount of queries. Googling also showed that w3af.org is an open source application used for web vulnerability scanning
@@ -107,7 +103,7 @@ This question confused me in the beginning by saying "IP address from Q2 is also
 The query narrows search to about 18,000 entries. The URI path "/member.php" has the largest count, and we know that previously TA conducted enumeration. If we select this path, it decreases amount of events to 662. Then, we can find the answer by reviewing and Googling functions in *form_data* field.
 
 SQL function *updatexml* appeared to be in the most events on the first page, and it is the answer. 
-![[Pasted image 20250308170103.png]]
+![Pasted image 20250308170103](https://github.com/user-attachments/assets/a5a79df3-38bf-4587-ba3f-642db43fcc93)
 
 What was the value of the cookie that Kevin's browser transmitted to the malicious URL as part of an XSS attack? Answer guidance: All digits. Not the cookie name or symbols like an equal sign.
 
@@ -122,7 +118,7 @@ What brewertalk.com username was maliciously created by a spear phishing attack?
 
 Answer: kiagerfield
 
-![[Pasted image 20250309193857.png]]
+![Pasted image 20250309193857](https://github.com/user-attachments/assets/e6c31d7e-2ab2-403c-8a9b-0eafba7ead1d)
 
 #### 300 series questions
 
