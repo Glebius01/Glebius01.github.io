@@ -1,3 +1,3 @@
-title: My GitHub Site
-theme: minima  # You can change the theme to whatever you prefer, like 'jekyll-theme-cayman', 'minima', etc.
+title: Hlib's Professional Page
+theme: hacker  # You can change the theme to whatever you prefer, like 'jekyll-theme-cayman', 'minima', etc.
 markdown: kramdown  # Default markdown processor for Jekyll
