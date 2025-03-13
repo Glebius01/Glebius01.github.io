@@ -12,7 +12,9 @@
 I'm a a cybersecurity enthusiast aiming to transition into a Security Operations Center (SOC) Tier 1 Analyst role. I have completed HackTheBox prerequisites for the SOC Analyst role, as well as the SOC Analyst learning path. Additionally, I have listened to a series of lectures from Harvard University to reinforce my theoretical knowledge. Now, I am working on various challenges and CTF competitions to get hands-on experience and prepare for the next exams.
 
 ## Completed Challenges
-- <a href="https://glebius01.github.io/I like to">I-like-to [#HTB #DFIR]
-- <a href="https://glebius01.github.io/Meerkat">Meerkat [#HTB #DFIR]
-- <a href="https://glebius01.github.io/TryHackMe_Splunk2">Splunk2 [#THM #SIEM]
-- <a href="https://glebius01.github.io/Boss of the Splunk. Investigating an APT">Boss of the Splunk. Investigating APT [#BOTS #SIEM]
+| Link | Tags |
+| --- | --- |
+| [I-like-to](https://glebius01.github.io/I%20like%20to) | #HTB #DFIR |
+| [Meerkat](https://glebius01.github.io/Meerkat) | #HTB #DFIR |
+| [Splunk2](https://glebius01.github.io/TryHackMe_Splunk2) | #THM #SIEM |
+| [Boss of the Splunk. Investigating APT](https://glebius01.github.io/Boss%20of%20the%20Splunk.%20Investigating%20an%20APT) | #BOTS #SIEM |
