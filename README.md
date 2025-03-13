@@ -18,4 +18,4 @@ I'm a a cybersecurity enthusiast aiming to transition into a Security Operations
 | [I-like-to](https://glebius01.github.io/I%20like%20to)              | #HTB #DFIR   |
 | [Meerkat](https://glebius01.github.io/Meerkat)                      | #HTB #DFIR   |
 | [Splunk2](https://glebius01.github.io/TryHackMe_Splunk2)            | #THM #SIEM   |
-| [Boss of the Splunk. Investigating APT](https://glebius01.github.io/Boss%20of%20the%20Splunk.%20Investigating%20an%20APT) | #BOTS #SIEM |
+| [Boss of the SOC. Investigating an APT](https://glebius01.github.io/Boss_of_the_SOC_Investigating_an_APT) | #BOTS #SIEM |
