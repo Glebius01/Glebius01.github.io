@@ -1,3 +1,5 @@
+### Summary: 
+This SPLUNK training is based on Splunk Boss of the SOC CTF (BOTSv1 2016). We persume the role of a SOC analyst Alice Bluebird and investigate a website defacement incident. 
 
 #### Finding the IP Scanning Your Web Server
 
@@ -22,7 +24,7 @@ Side note - The form_data field contains information being passed from the clien
 #### Identifying the First Password Attempted in a Brute Force Attack
 `index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* | stats count by _time, form_data | sort _time asc | head 10`. 
 The password itself can be extracted using `| rex field=form_data "passwd=(?<userpassword>\w+)"`. Alternative to sort asc - reverse, and to stats count is table.
-### Identifying the Password Used To Gain Access
+#### Identifying the Password Used To Gain Access
 `index=botsv1 sourcetype="stream:http" dest="192.168.250.70" http_method=POST form_data=*username*passwd* dest_headers!="*Connection: close*"  | rex field=form_data "passwd=(?<userpassword>\w+)" | table dest_headers, userpassword, src`
    
 Another way to do it, is to stats count all the used passwords and sort them -- the password which has been used twice, was most likely successful. Please note **value(src)** which is used to search for more than 1 value in the field.
@@ -31,14 +33,14 @@ Another way to do it, is to stats count all the used passwords and sort them -- 
 `| rex field=form_data "passwd=(?<userpassword>\w+)"` 
 `| stats count values(src) by userpassword`
 `| sort - count`
-### Determining The Elapsed Time Between Events
+#### Determining The Elapsed Time Between Events
 `index=botsv1 sourcetype=stream:http`
 `| rex field=form_data "passwd=(?<userpassword>\w+)"` 
 `| search userpassword=batman` 
 `| transaction userpassword` 
 `| table duration`
 
-### Identifying the Executable Uploaded
+#### Identifying the Executable Uploaded
 Starting with stream:http, we know the destination is the web server and we know its IP address. If we add the string `"*.exe"` to our search, we can narrow our search and then look into the part_filename{} field and see 2 filenames referenced; one exe and one php file. Note that we don't yet know the field name hrtr, but Splunk's full text search capabilities will find the file extension regardless of what field it is in.
 
 Each logs have their own values in the fields, for example dest=imreallynotbatman and dest_ip=192.168.250.70, thus AND/OR statements, and parenthesis might be required.
@@ -51,19 +53,19 @@ To identify initially we can use:
 
 `index=botsv1 sourcetype=suricata dest_ip="192.168.250.70" http.http_method=POST .exe`
 
-### Determining the Hash of the Uploaded File
+#### Determining the Hash of the Uploaded File
 
 Use Sysmon logs as they provide information about hashes. Filter out by event description to see only process execution/creation, then filter by command line to ensure that exactly 3791.exe is run.
 
 `index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" CommandLine="3791.exe" | rex field=Hashes "MD5=(?<MD5_hash>\w+)" | stats values(MD5_hash)`
 
-### Identifying the File that Defaced Our Web Server
+#### Identifying the File that Defaced Our Web Server
 
 We can look at the connections to external IP addresses originating from our server. If there are any, it is already unusual. Then we can analyse each of these connection and pivot into URL fields to get more details. 
 
 `index=botsv1 src=192.168.250.70 sourcetype=suricata`
 
-### Identifying the FQDN of the System that Defaced The Web Server
+#### Identifying the FQDN of the System that Defaced The Web Server
 
 Find the malicious file and check URL field. Additionally, we can confirm findings by investigating other source types with the malicious file. Alternatively, utilise DNS logs and targeted IP to see. 
 
