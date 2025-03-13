@@ -1,9 +1,3 @@
----
-layout: default
-title: I-like-to
-permalink: https://glebius01.github.io/i-like-to
----
-
 ### Summary: 
 
 *I-like-to* is one of the first Sherlocks HTB has published. Despite being ranked as easy, it still provides a good learning value for a beginner. While working on this challenge, I have acquainted with MOVEit vulnerability, analysed KAPE artifacts, including MFT file, correlated data with raw hex, and answered relevant questions regarding the exploitation of the vulnerability.
