@@ -1,6 +1,6 @@
 ### Summary:
 
-This hands-on learning module focuses on using Splunk for security incident detection and response. Based on the _Boss of the SOC_ challenge (_Investigating APT_), it allowed me to enhance my SIEM skills, cyber kill chain investigation, and OSINT techniques through repetition and the gradual learning of new concepts. [Link to this room on TryHackMe]([TryHackMe | Incident handling with Splunk](https://tryhackme.com/room/splunk201))
+This hands-on learning module focuses on using Splunk for security incident detection and response. Based on the _Boss of the SOC_ challenge (_Investigating APT_), it allowed me to enhance my SIEM skills, cyber kill chain investigation, and OSINT techniques through repetition and the gradual learning of new concepts. <a href="https://tryhackme.com/room/splunk201" target="_blank" rel="noopener noreferrer">Link to this challenge on TryHackMe</a>
 ### Scenario:
 
 A Big corporate organization **Wayne Enterprises** has recently faced a cyber-attack where the attackers broke into their network, found their way to their web server, and have successfully defaced their website **http://www.imreallynotbatman.com** . Their website is now showing the trademark of the attackers with the message **YOUR SITE HAS BEEN DEFACED** as shown below.
