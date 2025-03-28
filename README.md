@@ -22,3 +22,4 @@ I'm a a cybersecurity enthusiast aiming to transition into a Security Operations
 | [Splunk2](https://glebius01.github.io/TryHackMe_Splunk2)            | #THM #BOTS #SPLUNK   |
 | [Boss of the SOC. Investigating an APT](https://glebius01.github.io/bots-advanced-persistence) | #BOTS #SPLUNK |
 | [Incident Handling with Splunk](https://glebius01.github.io/Splunk201.%20Incident%20Handling%20with%20Splunk) | #THM #BOTS #SPLUNK |
+| [Investigating with Splunk](https://glebius01.github.io/Investigating%20with%20Splunk) | #THM #SPLUNK |
