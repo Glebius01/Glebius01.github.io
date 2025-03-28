@@ -1,6 +1,6 @@
 ## Summary: 
 
-Medium difficulty investigation using Splunk on TryHackMe. [Link to this challenge.]([TryHackMe | Investigating with Splunk](https://tryhackme.com/room/investigatingwithsplunk))
+Medium difficulty investigation using Splunk on TryHackMe. <a href="https://tryhackme.com/room/investigatingwithsplunk" target="_blank" rel="noopener noreferrer">Link to this challenge</a>
 
 ## Scenario: 
 
