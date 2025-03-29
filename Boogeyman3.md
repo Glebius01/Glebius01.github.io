@@ -40,7 +40,7 @@ Answer: "C:\Windows\System32\xcopy.exe" /s /i /e /h D:\review.dat C:\Users\EVAN~
 
 #### 3. The implanted file was eventually used and executed by the stage 1 payload. What is the full command-line value of this execution?
 
-Following the timeline wwe can see that previously implanted file was used.
+Following the timeline we can see that previously implanted file was used.
 
 Answer: "C:\Windows\System32\rundll32.exe" D:\review.dat,DllRegisterServer
 
