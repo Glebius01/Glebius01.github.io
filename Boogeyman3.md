@@ -17,9 +17,7 @@ Upon receiving the phishing email report, the security team investigated the wor
 In addition, the security team also observed a file inside the ISO payload, as shown in the image below.
 ![image](https://github.com/user-attachments/assets/f3be4152-5bf0-4225-906a-fc01371a0b36)
 
-Lastly, it was presumed by the security team that the incident occurred between August 29 and August 30, 2023.
-
-## Given the initial findings, you are tasked to analyse and assess the impact of the compromise.
+Lastly, it was presumed by the security team that the incident occurred between August 29 and August 30, 2023. Given the initial findings, you are tasked to analyse and assess the impact of the compromise.
 
 ---
 
@@ -99,6 +97,7 @@ The answer can be found in `host.name` field or while analysing events.
 ![image](https://github.com/user-attachments/assets/9ec0cfee-b36c-4609-a74d-e0cb68c33a59)
 
 Answer: WKSTN-1327
+
 I filtered for user `"QUICKLOGISTICS\allan.smith"` and created a visualizaion to look through parent processes names and their executed commands. `wsmprovhost.exe` got my attention, and I found out that it also ran a malicious base64.
 ![image](https://github.com/user-attachments/assets/c452dcad-c316-4ddb-a019-cd981da8b34d)
 
