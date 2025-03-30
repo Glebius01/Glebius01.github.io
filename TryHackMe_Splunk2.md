@@ -138,6 +138,12 @@ Answer: S07E02
 
 #### Kevin Lagerfield used a USB drive to move malware onto kutekitten, Mallory's personal MacBook. She ran the malware, which obfuscates itself during execution. Provide the vendor name of the USB drive Kevin likely used. Answer Guidance: Use time correlation to identify the USB drive.
 
+Filter for `index="botsv2" kutekitten usb`, then look for `vendor id` field. There are 2 potential providers, but if we correlate events time with incident time we will know that id 058f is the right choice. Google USB vendor ID 058f and you will find the answer.
+
+Answer: Alcor Micro Corp
+
+
+
 
 
 
