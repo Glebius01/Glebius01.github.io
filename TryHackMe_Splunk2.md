@@ -142,6 +142,20 @@ Filter for `index="botsv2" kutekitten usb`, then look for `vendor id` field. The
 
 Answer: Alcor Micro Corp
 
+#### What programming language is at least part of the malware from the question above written in?
+
+While investigating the system we noticed a suspicious file `important_HR_INFO_for_mkraeusen` downloaded shortly after adding the USB. If we look into events with this file name, we are able to find its hash and check it on VirusTotal. The research showed that it has negative review on VirusTotal and under "Details" tab we can see that it is a PERL file.
+
+Answer: perl
+
+#### When was this malware first seen in the wild? Answer Guidance: YYYY-MM-DD
+
+The answer is also found under "Details" tab on VirusTotal
+
+Answer: 2017-01-17
+
+
+
 
 
 
