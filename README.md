@@ -11,7 +11,7 @@
 
 ## About me
 
-I'm a a cybersecurity enthusiast aiming to transition into a Security Operations Center (SOC) Tier 1 Analyst role. I have completed HackTheBox prerequisites for the SOC Analyst role, as well as the SOC Analyst learning path. Additionally, I have listened to a series of lectures from Harvard University to reinforce my theoretical knowledge. Now, I am working on various challenges and CTF competitions to get hands-on experience and prepare for the next exams.
+I'm a SOC Analyst L1 and just security enthusiast. Here I collect and post my different project and completed hands-on labs.
 
 ## Completed Challenges
 
