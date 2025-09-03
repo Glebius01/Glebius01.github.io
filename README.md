@@ -11,7 +11,7 @@
 
 ## About me
 
-I'm a SOC Analyst L1 and just security enthusiast. Here I collect and post my different project and completed hands-on labs.
+I'm a SOC Analyst L1 and just a security enthusiast. Here I collect and post my different projects and completed hands-on labs.
 
 ## Completed Challenges
 
