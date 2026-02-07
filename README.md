@@ -24,4 +24,4 @@ I'm a SOC Analyst L1 and just a security enthusiast. Here I collect and post my 
 | [Incident Handling with Splunk](https://glebius01.github.io/Splunk201.%20Incident%20Handling%20with%20Splunk) | #THM #BOTS #SPLUNK |
 | [Investigating with Splunk](https://glebius01.github.io/Investigating%20with%20Splunk) | #THM #SPLUNK |
 | [Boogeyman3](https://glebius01.github.io/Boogeyman3) | #THM #ELK |
-| [Investigating Suspicious VBScript and IR](https://github.com/Glebius01/Glebius01.github.io/blob/1f5c4b24344dd7053da87809d53c89ca05bd720f/Case%20SOC189%20-%20VBScript%20Suspicious%20Behavior%20Detected.md) | #LetsDefend #DFIR |
+| [Investigating Suspicious VBScript and IR](https://glebius01.github.io/Case%20SOC189%20-%20VBScript%20Suspicious%20Behavior%20Detected) | #LetsDefend #DFIR |
