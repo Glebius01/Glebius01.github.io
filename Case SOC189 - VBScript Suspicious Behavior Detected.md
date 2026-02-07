@@ -38,8 +38,8 @@ Since the malicious ZIP file was delivered through a phishing email from the spo
 
 ### Key Entities and IOCs:
 
-Hostname: "David"
-Malicious file: C:\Users\LetsDefend\Downloads\Purchase_Order\Purchase_Order.xls.vbs 
-SHA256:(1C546A6548BEDA639640EBFBB52ABD5F6013C33500172CFCCF0E8716C96BB196)
-Source URL: https://files-ld.s3.us-east-2.amazonaws.com/Purchase_Order.zip
-Source IP: 172.16.17.31
+* Hostname: "David"
+* Malicious file: C:\Users\LetsDefend\Downloads\Purchase_Order\Purchase_Order.xls.vbs 
+* SHA256:(1C546A6548BEDA639640EBFBB52ABD5F6013C33500172CFCCF0E8716C96BB196)
+* Source URL: https://files-ld.s3.us-east-2.amazonaws.com/Purchase_Order.zip
+* Source IP: 172.16.17.31
