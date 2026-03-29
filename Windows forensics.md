@@ -1,8 +1,11 @@
----
-layout: post
-toc: true
----
+* toc
+{:toc}
 
+## Executive Summary
+
+A targeted phishing campaign was identified within the organization, affecting three systems. A forensic triage image from one compromised host was analyzed to identify attacker tactics, techniques, and procedures (TTPs). The investigation revealed the use of a malicious document for initial access, execution of a staged payload, persistence via registry manipulation, lateral movement through RDP, and post-exploitation activity consistent with a Metasploit framework.ck triage image was collected from one of the infected systems and provided to you for identification of TTPs being used by attackers.
+
+### Q1 – Initial Access. Initial access was made through a malicious document delivered via email. What was the full path where the document was downloaded?
 ## Executive Summary
 
 A targeted phishing campaign was identified within the organization, affecting three systems. A forensic triage image from one compromised host was analyzed to identify attacker tactics, techniques, and procedures (TTPs). The investigation revealed the use of a malicious document for initial access, execution of a staged payload, persistence via registry manipulation, lateral movement through RDP, and post-exploitation activity consistent with a Metasploit framework.ck triage image was collected from one of the infected systems and provided to you for identification of TTPs being used by attackers.
@@ -109,3 +112,5 @@ DeepBlue recognises the command above as Metasploit-type.
 - Lateral movement was performed using RDP
 - Post-exploitation included PowerView usage and privilege escalation
 - Indicators strongly align with Metasploit framework activity
+
+ toc }}
