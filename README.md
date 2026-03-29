@@ -19,7 +19,7 @@ I'm a Cyber Security Analyst and a tech enthusiast. Here I collect and post my d
 | -------------------------------------------------------------------- | -----------  |
 | [I-like-to](https://glebius01.github.io/I%20like%20to)              | #HTB #DFIR   |
 | [Meerkat](https://glebius01.github.io/Meerkat)                      | #HTB #DFIR   |
-| [Investigating Suspicious VBScript and IR](https://glebius01.github.io/Case%20SOC189%20-%20VBScript%20Suspicious%20Behavior%20Detected) | #LetsDefend #DFIR |
+| [Investigating and Responding to a Suspicious VBScript](https://glebius01.github.io/Case%20SOC189%20-%20VBScript%20Suspicious%20Behavior%20Detected) | #LetsDefend #DFIR |
 | [Windows Forensics](https://glebius01.github.io/Windows%20forensics) | #LetsDefend #DFIR |
 | [Splunk2](https://glebius01.github.io/TryHackMe_Splunk2)            | #THM #BOTS #SPLUNK   |
 | [Boss of the SOC. Investigating an APT](https://glebius01.github.io/bots-advanced-persistence) | #BOTS #SPLUNK |
