@@ -1,5 +1,6 @@
 title: Hlib`s Professional Page
 remote_theme: pages-themes/hacker@v0.2.0
 markdown: kramdown
-layout: {{ content | toc }}
-plugins: jekyll-toc
+layout: default
+plugins:
+  - jekyll-toc
