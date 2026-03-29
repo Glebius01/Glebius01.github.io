@@ -1,3 +1,14 @@
+* TOC
+{:toc}
+
+### Executive Summary:
+
+On April 20, 2023, a WSHRAT-type malware infection was detected on endpoint “David” via a phishing email impersonating GoDaddy. The user downloaded a malicious ZIP containing an obfuscated VBScript (Purchase_Order.xls.vbs), which executed via wscript.exe, modified the registry for persistence, and enabled remote access.
+
+Threat analysis confirmed the file as a trojan (zbot/heuristic variant). No evidence of privilege escalation, credential theft, or lateral movement was found.
+
+The incident was contained by removing the malicious email, files, and persistence entries, and validating system integrity. This event emphasizes the ongoing risk of phishing and script-based malware, highlighting the need for stronger email defenses and user awareness.
+
 ### Investigation:
 
 On Apr, 20, 2023, 09:42 AM L1 analyst escalated the case because of its malicious hash and reports of it being WSHRAT-type malware.
