@@ -1,4 +1,7 @@
-{{ content | toc }}
+---
+layout: post
+toc: true
+---
 
 ## Executive Summary
 
