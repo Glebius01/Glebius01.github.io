@@ -1,4 +1,6 @@
 title: Hlib`s Professional Page
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+- jekyll-remote-theme
 markdown: kramdown
 layout: default
