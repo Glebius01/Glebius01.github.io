@@ -6,6 +6,8 @@ An attacker used compromised AWS credentials to establish persistence within a c
 
 Having followed the lab instructions on how to unzip and inflate the archive, the first problem I encountered was readability. There are 24 JSON files in the folder; opening them one by one to look for artifacts is a nightmare. Thankfully, using the command `jq . *.json > analysis.json`, I could format and save all of these logs into one single file.
 
+<img width="1906" height="1006" alt="download" src="https://github.com/user-attachments/assets/84aa9d7b-53a9-42e4-98f7-d1bec9203151" />
+
 ---
 
 ### Q1 – Compromised Identity: What is the compromised identity?
@@ -13,6 +15,10 @@ Having followed the lab instructions on how to unzip and inflate the archive, th
 Scrolling through the log, we can see that the user `s3user` attempted to perform an unauthorized action: `ListServiceQuotas`. This triggered my suspicion, and by looking up the user using Ctrl+F in the file, I could see attempts to run `ListServiceUsers`, `CreateUser` (for `adm1n` and `dev0ps_user`), and other calls.
 
 Answer: **`s3user`**
+
+<img width="1904" height="519" alt="download (5)" src="https://github.com/user-attachments/assets/c6fd848a-ad07-4ebe-86aa-e3ef0a0028be" />
+
+
 
 ---
 
@@ -24,6 +30,7 @@ Since we know the compromised user, we can filter by "s3user" and look for calls
 jq -r '.Records[] | select(.userIdentity.userName == "s3user") | "\(.eventTime) — \(.eventName)"' analysis.json | sort
 
 ```
+<img width="1910" height="344" alt="download (2)" src="https://github.com/user-attachments/assets/db6acfc8-57dc-4d9d-9489-87725874deac" />
 
 In chronological order, these three match the question criteria:
 
@@ -41,6 +48,7 @@ Modifying the query to see only successful calls where there is no error:
 jq -r '.Records[] | select(.userIdentity.userName == "s3user" and .errorCode == null) | "\(.eventTime) — \(.eventName)"' analysis.json | sort
 
 ```
+<img width="1910" height="421" alt="download (3)" src="https://github.com/user-attachments/assets/e3ed5c05-368e-4770-a6e0-99352883ed53" />
 
 Getting the answer: **`ListBuckets`**
 
@@ -83,6 +91,7 @@ Scrolling down to the failed `CreateUser` calls, we can see a successful `GetBuc
 }
 
 ```
+<img width="1839" height="721" alt="download (4)" src="https://github.com/user-attachments/assets/34911b89-b035-4e95-82a9-8a76b1b95c73" />
 
 Answer: **`webrew-dev-backup`**
 
