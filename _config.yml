@@ -12,3 +12,5 @@ remote_theme: jekyll/minima
 # 3. Enforce the dark skin
 minima:
   skin: dark
+# 4. Header control. They can be added here.
+header_pages: []
