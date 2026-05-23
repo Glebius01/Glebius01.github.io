@@ -1,3 +1,6 @@
 title: Hlib`s Professional Page
+theme: minima
+minima:
+skin: dark
 markdown: kramdown
 layout: default
