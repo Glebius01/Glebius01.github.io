@@ -1,6 +1,14 @@
-title: Hlib`s Professional Page
-theme: minima
-minima:
-skin: dark
+title: "Hlib's Professional Page"
 markdown: kramdown
 layout: default
+
+# 1. Enable the remote theme plugin supported by GitHub Pages
+plugins:
+  - jekyll-remote-theme
+
+# 2. Point directly to the upstream Minima repository to get v3 features
+remote_theme: jekyll/minima
+
+# 3. Enforce the dark skin
+minima:
+  skin: dark
