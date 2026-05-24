@@ -5,7 +5,7 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ICONS (DO NOT TOUCH THIS - required for LinkedIn/email/etc.) -->
+  <!-- ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -42,15 +42,25 @@
       padding: 2rem;
     }
 
-    /* TOC */
+    /* =========================
+       TOC PANEL (FIXED + SCROLL)
+       ========================= */
     #toc {
-      width: 250px;
+      width: 260px;
       position: sticky;
       top: 20px;
       align-self: flex-start;
-      padding: 2rem 1rem;
+
       border-left: 1px solid #222;
-      font-size: 0.9rem;
+      padding: 1rem;
+    }
+
+    /* Scrollable TOC content */
+    #toc-list {
+      max-height: 70vh;   /* key fix */
+      overflow-y: auto;   /* independent scroll */
+      padding-right: 6px;
+      margin-top: 10px;
     }
 
     #toc a {
@@ -59,23 +69,39 @@
       color: #7cc7ff;
       text-decoration: none;
       opacity: 0.85;
+      font-size: 0.9rem;
     }
 
     #toc a:hover {
       opacity: 1;
     }
 
-    /* Smooth anchor spacing */
+    /* Collapse button */
+    #toc-toggle {
+      display: inline-block;
+      cursor: pointer;
+      color: #e6e6e6;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      opacity: 0.8;
+      user-select: none;
+    }
+
+    #toc.collapsed #toc-list {
+      display: none;
+    }
+
+    #toc.collapsed {
+      width: 60px;
+      overflow: hidden;
+    }
+
+    /* HEADINGS */
     h1, h2, h3 {
       scroll-margin-top: 80px;
     }
 
-    /* =========================
-       IMAGE RULE (SCOPED ONLY)
-       =========================
-       Only applies if you wrap content in:
-       <div class="lab-content">
-    */
+    /* IMAGES (scoped safe version) */
     .lab-content img {
       max-width: 800px;
       width: 100%;
@@ -118,6 +144,10 @@
         border-left: none;
         border-top: 1px solid #222;
       }
+
+      #toc.collapsed {
+        width: auto;
+      }
     }
   </style>
 </head>
@@ -129,12 +159,6 @@
   <nav>
     <a href="/">Home</a>
     <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
-
-    <!-- YOUR ICONS WILL WORK AS-IS -->
-    <!-- Example:
-    <a href="https://linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
-    -->
   </nav>
 </header>
 
@@ -144,8 +168,9 @@
     {{ content }}
   </main>
 
+  <!-- TOC -->
   <aside id="toc">
-    <strong>Contents</strong>
+    <div id="toc-toggle">☰ Contents</div>
     <div id="toc-list"></div>
   </aside>
 
@@ -163,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  /* TOC */
+  /* TOC GENERATION */
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll("main h1, main h2, main h3");
 
@@ -185,6 +210,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     toc.appendChild(a);
+  });
+
+  /* COLLAPSE TOC */
+  const tocBox = document.getElementById("toc");
+  const toggle = document.getElementById("toc-toggle");
+
+  toggle.addEventListener("click", function () {
+    tocBox.classList.toggle("collapsed");
   });
 
 });
