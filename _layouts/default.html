@@ -27,7 +27,7 @@
     }
 
     /* =========================
-       HEADER (ICON POSITION RESTORED)
+       HEADER (UNCHANGED SAFE)
        ========================= */
     header {
       padding: 2rem;
@@ -44,9 +44,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-right: 0; /* IMPORTANT: removes shift */
       font-size: 1rem;
-      color: #7cc7ff;
+      margin-right: 0;
     }
 
     nav i {
@@ -70,6 +69,25 @@
     }
 
     /* =========================
+       WRAP ALL WRITEUPS HERE
+       (THIS IS THE KEY FIX)
+       ========================= */
+    .post-content {
+      width: 100%;
+    }
+
+    /* ONLY WRITEUP IMAGES */
+    .post-content img {
+      max-width: 800px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+
+    /* =========================
        TOC
        ========================= */
     #toc {
@@ -88,16 +106,15 @@
       padding-right: 6px;
     }
 
-    /* FIX: TEXT WRAPPING IN TOC */
     #toc a {
       display: block;
       margin: 6px 0;
       font-size: 0.9rem;
       opacity: 0.85;
 
-      white-space: normal;        /* allow wrapping */
-      word-break: break-word;     /* force wrap long strings */
-      overflow-wrap: anywhere;     /* modern browsers */
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
     }
 
     #toc a:hover {
@@ -118,19 +135,6 @@
     #toc.collapsed {
       width: 60px;
       overflow: hidden;
-    }
-
-    /* =========================
-       IMAGES (SAFE)
-       ========================= */
-    main img {
-      max-width: 800px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 1rem auto;
-      border-radius: 6px;
-      border: 1px solid #333;
     }
 
     /* =========================
@@ -188,7 +192,7 @@
       GitHub view
     </a>
 
-    <!-- ICONS WORK AS BEFORE -->
+    <!-- ICONS SAFE -->
     <!--
     <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i> Email</a>
@@ -199,7 +203,9 @@
 <div class="container">
 
   <main>
-    {{ content }}
+    <div class="post-content">
+      {{ content }}
+    </div>
   </main>
 
   <aside id="toc">
@@ -223,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* TOC */
   const toc = document.getElementById("toc-list");
-  const headings = document.querySelectorAll("main h1, main h2, main h3");
+  const headings = document.querySelectorAll(".post-content h1, .post-content h2, .post-content h3");
 
   headings.forEach((h) => {
     if (!h.id) {
