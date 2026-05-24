@@ -42,15 +42,33 @@
       padding: 2rem;
     }
 
-    /* TOC */
+    /* =========================
+       TOC (ENHANCED - SAFE EXTENSION)
+       ========================= */
     #toc {
       width: 250px;
       position: sticky;
       top: 20px;
       align-self: flex-start;
-      padding: 2rem 1rem;
+      padding: 1rem;
       border-left: 1px solid #222;
       font-size: 0.9rem;
+    }
+
+    /* NEW: toggle header */
+    #toc-toggle {
+      cursor: pointer;
+      font-size: 0.85rem;
+      opacity: 0.85;
+      user-select: none;
+      margin-bottom: 10px;
+    }
+
+    /* NEW: scrollable TOC area */
+    #toc-list {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 6px;
     }
 
     #toc a {
@@ -65,17 +83,24 @@
       opacity: 1;
     }
 
+    /* collapse behavior (SAFE ADDITION) */
+    #toc.collapsed #toc-list {
+      display: none;
+    }
+
+    #toc.collapsed {
+      width: 60px;
+      overflow: hidden;
+    }
+
     /* Smooth anchor spacing */
     h1, h2, h3 {
       scroll-margin-top: 80px;
     }
 
     /* =========================
-       IMAGE RULE (SCOPED ONLY)
-       =========================
-       Only applies if you wrap content in:
-       <div class="lab-content">
-    */
+       IMAGE RULE (UNCHANGED - IMPORTANT)
+       ========================= */
     .lab-content img {
       max-width: 800px;
       width: 100%;
@@ -88,7 +113,7 @@
       object-fit: contain;
     }
 
-    /* TOP BUTTON */
+    /* TOP BUTTON (UNCHANGED) */
     #topBtn {
       position: fixed;
       bottom: 20px;
@@ -107,7 +132,7 @@
       opacity: 1;
     }
 
-    /* MOBILE */
+    /* MOBILE (UNCHANGED) */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -130,8 +155,8 @@
     <a href="/">Home</a>
     <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
 
-    <!-- YOUR ICONS WILL WORK AS-IS -->
-    <!-- Example:
+    <!-- ICONS UNCHANGED -->
+    <!--
     <a href="https://linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
     <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
     -->
@@ -145,7 +170,7 @@
   </main>
 
   <aside id="toc">
-    <strong>Contents</strong>
+    <div id="toc-toggle">☰ Contents</div>
     <div id="toc-list"></div>
   </aside>
 
@@ -156,14 +181,14 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* TOP BUTTON */
+  /* TOP BUTTON (UNCHANGED) */
   const btn = document.getElementById("topBtn");
 
   window.addEventListener("scroll", function () {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  /* TOC */
+  /* TOC GENERATION (UNCHANGED LOGIC) */
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll("main h1, main h2, main h3");
 
@@ -185,6 +210,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     toc.appendChild(a);
+  });
+
+  /* =========================
+     NEW: COLLAPSIBLE TOC
+     (SAFE ADD-ON ONLY)
+     ========================= */
+  const tocBox = document.getElementById("toc");
+  const toggle = document.getElementById("toc-toggle");
+
+  toggle.addEventListener("click", function () {
+    tocBox.classList.toggle("collapsed");
   });
 
 });
