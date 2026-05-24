@@ -43,32 +43,16 @@
     }
 
     /* =========================
-       TOC (ENHANCED - SAFE EXTENSION)
+       TOC (scrollable + collapsible)
        ========================= */
     #toc {
       width: 250px;
       position: sticky;
       top: 20px;
       align-self: flex-start;
-      padding: 1rem;
+      padding: 2rem 1rem;
       border-left: 1px solid #222;
       font-size: 0.9rem;
-    }
-
-    /* NEW: toggle header */
-    #toc-toggle {
-      cursor: pointer;
-      font-size: 0.85rem;
-      opacity: 0.85;
-      user-select: none;
-      margin-bottom: 10px;
-    }
-
-    /* NEW: scrollable TOC area */
-    #toc-list {
-      max-height: 70vh;
-      overflow-y: auto;
-      padding-right: 6px;
     }
 
     #toc a {
@@ -83,7 +67,21 @@
       opacity: 1;
     }
 
-    /* collapse behavior (SAFE ADDITION) */
+    /* collapse header */
+    #toc-toggle {
+      cursor: pointer;
+      font-size: 0.85rem;
+      opacity: 0.85;
+      user-select: none;
+      margin-bottom: 10px;
+    }
+
+    #toc-list {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
     #toc.collapsed #toc-list {
       display: none;
     }
@@ -93,18 +91,16 @@
       overflow: hidden;
     }
 
-    /* Smooth anchor spacing */
     h1, h2, h3 {
       scroll-margin-top: 80px;
     }
 
     /* =========================
-       IMAGE RULE (UNCHANGED - IMPORTANT)
+       IMAGE RULE (ONLY FOR /Labs/)
        ========================= */
-    .lab-content img {
-      max-width: 800px;
+    body.labs-page main img {
+      max-width: 800px !important;
       width: 100%;
-      max-height: 600px;
       height: auto;
       display: block;
       margin: 1rem auto;
@@ -113,7 +109,14 @@
       object-fit: contain;
     }
 
-    /* TOP BUTTON (UNCHANGED) */
+    /* prevent icons from being affected */
+    nav i, svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto !important;
+    }
+
+    /* TOP BUTTON */
     #topBtn {
       position: fixed;
       bottom: 20px;
@@ -122,7 +125,6 @@
       color: #fff;
       padding: 10px 12px;
       border-radius: 6px;
-      text-decoration: none;
       border: 1px solid #333;
       display: none;
       z-index: 999;
@@ -132,7 +134,7 @@
       opacity: 1;
     }
 
-    /* MOBILE (UNCHANGED) */
+    /* MOBILE */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -147,17 +149,18 @@
   </style>
 </head>
 
-<body>
+<body class="{% if page.url contains '/Labs/' %}labs-page{% endif %}">
 
 <header>
   <h1>{{ site.title }}</h1>
+
   <nav>
     <a href="/">Home</a>
     <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
 
-    <!-- ICONS UNCHANGED -->
+    <!-- ICONS SAFE -->
     <!--
-    <a href="https://linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
     <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
     -->
   </nav>
@@ -181,14 +184,13 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* TOP BUTTON (UNCHANGED) */
+  /* TOP BUTTON */
   const btn = document.getElementById("topBtn");
-
   window.addEventListener("scroll", function () {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  /* TOC GENERATION (UNCHANGED LOGIC) */
+  /* TOC GENERATION */
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll("main h1, main h2, main h3");
 
@@ -212,10 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toc.appendChild(a);
   });
 
-  /* =========================
-     NEW: COLLAPSIBLE TOC
-     (SAFE ADD-ON ONLY)
-     ========================= */
+  /* COLLAPSIBLE TOC */
   const tocBox = document.getElementById("toc");
   const toggle = document.getElementById("toc-toggle");
 
