@@ -1,6 +1,6 @@
 title: "Hlib's Professional Page"
 markdown: kramdown
-
+layout: base
 # 1. Enable the remote theme plugin supported by GitHub Pages
 plugins:
   - jekyll-remote-theme
