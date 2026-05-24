@@ -8,9 +8,6 @@ plugins:
 
 # 2. Point directly to the upstream Minima repository to get v3 features
 remote_theme: jekyll/minima
-
-# 3. Enforce the dark skin
 minima:
   skin: dark
-# 4. Header control. They can be added here.
-header_pages: []
+  header_pages: []
