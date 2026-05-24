@@ -26,9 +26,7 @@ Answer: **`s3user`**
 
 Since we know the compromised user, we can filter by "s3user" and look for calls typically used for reconnaissance. I asked AI to kindly assist with the right query:
 
-```
-jq -r '.Records[] | select(.userIdentity.userName == "s3user") | "\(.eventTime) — \(.eventName)"' analysis.json | sort
-```
+`jq -r '.Records[] | select(.userIdentity.userName == "s3user") | "\(.eventTime) — \(.eventName)"' analysis.json | sort`
 
 <img width="1910" height="344" alt="download (2)" src="https://github.com/user-attachments/assets/db6acfc8-57dc-4d9d-9489-87725874deac" />
 
@@ -44,9 +42,7 @@ In chronological order, these three match the question criteria:
 
 Modifying the query to see only successful calls where there is no error:
 
-```
-jq -r '.Records[] | select(.userIdentity.userName == "s3user" and .errorCode == null) | "\(.eventTime) — \(.eventName)"' analysis.json | sort
-```
+`jq -r '.Records[] | select(.userIdentity.userName == "s3user" and .errorCode == null) | "\(.eventTime) — \(.eventName)"' analysis.json | sort`
 <img width="1910" height="421" alt="download (3)" src="https://github.com/user-attachments/assets/e3ed5c05-368e-4770-a6e0-99352883ed53" />
 
 Getting the answer: **`ListBuckets`**
@@ -114,9 +110,7 @@ And consequently, they used **`PutBucketVersioning`** to suspend that safety fea
 
 Knowing the source IP of the threat actor, we can utilize another advanced query to see calls that involve file movement, such as `GetObject`:
 
-```
-jq -r '.Records[] | select(.sourceIPAddress == "159.48.53.157") | "\(.eventTime) — \(.eventName) — File: \(.requestParameters.key // "N/A")"' analysis.json | sort
-```
+`jq -r '.Records[] | select(.sourceIPAddress == "159.48.53.157") | "\(.eventTime) — \(.eventName) — File: \(.requestParameters.key // "N/A")"' analysis.json | sort`
 
 Indeed, having executed the command, we can see the list of calls, among which was a `GetObject` action.
 
