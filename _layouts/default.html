@@ -27,7 +27,7 @@
     }
 
     /* =========================
-       HEADER (UNCHANGED SAFE)
+       HEADER (FIXED ICON ISSUE)
        ========================= */
     header {
       padding: 2rem;
@@ -38,6 +38,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -45,12 +46,14 @@
       align-items: center;
       gap: 6px;
       font-size: 1rem;
-      margin-right: 0;
+      line-height: 1;
+      white-space: nowrap;
     }
 
     nav i {
       font-size: 1rem !important;
-      line-height: 1;
+      line-height: 1 !important;
+      display: inline-block;
     }
 
     /* =========================
@@ -69,14 +72,8 @@
     }
 
     /* =========================
-       WRAP ALL WRITEUPS HERE
-       (THIS IS THE KEY FIX)
+       WRITEUP IMAGES (SAFE)
        ========================= */
-    .post-content {
-      width: 100%;
-    }
-
-    /* ONLY WRITEUP IMAGES */
     .post-content img {
       max-width: 800px;
       width: 100%;
@@ -88,10 +85,10 @@
     }
 
     /* =========================
-       TOC
+       TOC (CLEAN PROFESSIONAL FIX)
        ========================= */
     #toc {
-      width: 260px;
+      width: 280px; /* slightly wider to avoid ugly wrapping */
       position: sticky;
       top: 20px;
       align-self: flex-start;
@@ -114,7 +111,9 @@
 
       white-space: normal;
       word-break: break-word;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+
+      max-width: 100%;
     }
 
     #toc a:hover {
@@ -188,11 +187,9 @@
 
   <nav>
     <a href="/">Home</a>
-    <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">
-      GitHub view
-    </a>
+    <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
 
-    <!-- ICONS SAFE -->
+    <!-- ICONS (safe, unchanged) -->
     <!--
     <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i> Email</a>
@@ -220,14 +217,12 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* TOP BUTTON */
   const btn = document.getElementById("topBtn");
 
   window.addEventListener("scroll", function () {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  /* TOC */
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll(".post-content h1, .post-content h2, .post-content h3");
 
@@ -251,13 +246,10 @@ document.addEventListener("DOMContentLoaded", function () {
     toc.appendChild(a);
   });
 
-  /* COLLAPSE */
-  const tocBox = document.getElementById("toc");
-  const toggle = document.getElementById("toc-toggle");
-
-  toggle.addEventListener("click", function () {
-    tocBox.classList.toggle("collapsed");
-  });
+  document.getElementById("toc-toggle")
+    .addEventListener("click", () => {
+      document.getElementById("toc").classList.toggle("collapsed");
+    });
 
 });
 </script>
