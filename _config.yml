@@ -1,9 +1,19 @@
-title: "Hlib's Professional Page"
+title: "Hlib | Cyber Security Portfolio"
+description: "Security labs, investigations, and technical write-ups"
 markdown: kramdown
-plugins:
-  - jekyll-remote-theme
 
-remote_theme: "jekyll/minima@1e8a445"
-minima:
-  skin: dark
-  header pages: []
+theme: null
+
+plugins:
+  - jekyll-feed
+
+collections:
+  labs:
+    output: true
+    permalink: /labs/:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
