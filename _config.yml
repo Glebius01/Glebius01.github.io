@@ -9,4 +9,5 @@ plugins:
 remote_theme: jekyll/minima
 minima:
   skin: dark
-  layout: home.html
+  nav_pages:
+    []
