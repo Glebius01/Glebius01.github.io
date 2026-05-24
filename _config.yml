@@ -1,6 +1,5 @@
 title: "Hlib's Professional Page"
 markdown: kramdown
-layout: default
 
 # 1. Enable the remote theme plugin supported by GitHub Pages
 plugins:
@@ -10,4 +9,4 @@ plugins:
 remote_theme: jekyll/minima
 minima:
   skin: dark
-  header_pages: []
+  layout: home.html
