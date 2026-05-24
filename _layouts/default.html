@@ -14,11 +14,10 @@
       line-height: 1.6;
     }
 
-    img {
-  max-width: 800px;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #333;
+   main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
 }
 
     header {
@@ -55,4 +54,15 @@
     {{ content }}
   </main>
 </body>
+
+  <script>
+window.onscroll = function () {
+  const btn = document.getElementById("topBtn");
+  if (document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+</script>
 </html>
