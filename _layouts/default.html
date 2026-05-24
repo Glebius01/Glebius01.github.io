@@ -5,7 +5,7 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ICONS -->
+  <!-- ICONS (required for LinkedIn/email/etc.) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -43,24 +43,22 @@
     }
 
     /* =========================
-       TOC PANEL (FIXED + SCROLL)
+       TOC SIDEBAR
        ========================= */
     #toc {
       width: 260px;
       position: sticky;
       top: 20px;
       align-self: flex-start;
-
       border-left: 1px solid #222;
       padding: 1rem;
     }
 
-    /* Scrollable TOC content */
     #toc-list {
-      max-height: 70vh;   /* key fix */
-      overflow-y: auto;   /* independent scroll */
-      padding-right: 6px;
+      max-height: 70vh;
+      overflow-y: auto;
       margin-top: 10px;
+      padding-right: 6px;
     }
 
     #toc a {
@@ -76,14 +74,10 @@
       opacity: 1;
     }
 
-    /* Collapse button */
     #toc-toggle {
-      display: inline-block;
       cursor: pointer;
-      color: #e6e6e6;
       font-size: 0.85rem;
-      margin-bottom: 8px;
-      opacity: 0.8;
+      opacity: 0.85;
       user-select: none;
     }
 
@@ -101,20 +95,23 @@
       scroll-margin-top: 80px;
     }
 
-    /* IMAGES (scoped safe version) */
+    /* =========================
+       FIXED IMAGE HANDLING
+       (THIS FIXES YOUR ISSUE)
+       ========================= */
     main img {
-  max-width: 800px;
-  width: 100%;
-  max-height: 600px;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
-  border-radius: 6px;
-  border: 1px solid #333;
-  object-fit: contain;
-}
+      max-width: 800px;
+      width: 100%;
+      max-height: 600px;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 6px;
+      border: 1px solid #333;
+      object-fit: contain;
+    }
 
-    /* TOP BUTTON */
+    /* BACK TO TOP */
     #topBtn {
       position: fixed;
       bottom: 20px;
@@ -168,7 +165,6 @@
     {{ content }}
   </main>
 
-  <!-- TOC -->
   <aside id="toc">
     <div id="toc-toggle">☰ Contents</div>
     <div id="toc-list"></div>
@@ -181,14 +177,14 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* TOP BUTTON */
+  /* BACK TO TOP */
   const btn = document.getElementById("topBtn");
 
   window.addEventListener("scroll", function () {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  /* TOC GENERATION */
+  /* TOC BUILD */
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll("main h1, main h2, main h3");
 
@@ -212,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toc.appendChild(a);
   });
 
-  /* COLLAPSE TOC */
+  /* TOC COLLAPSE */
   const tocBox = document.getElementById("toc");
   const toggle = document.getElementById("toc-toggle");
 
