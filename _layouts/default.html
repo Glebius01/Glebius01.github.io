@@ -5,13 +5,10 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ICONS (DO NOT TOUCH) -->
+  <!-- ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* =========================
-       BASE RESET (prevents weird inheritance)
-       ========================= */
     * {
       box-sizing: border-box;
     }
@@ -30,24 +27,30 @@
     }
 
     /* =========================
-       HEADER (RESTORED SAFE STATE)
+       HEADER (ICON POSITION RESTORED)
        ========================= */
     header {
       padding: 2rem;
       border-bottom: 1px solid #222;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     nav a {
-      margin-right: 1rem;
-      color: #7cc7ff;
-      font-size: 1rem; /* prevents icon blow-up */
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      margin-right: 0; /* IMPORTANT: removes shift */
+      font-size: 1rem;
+      color: #7cc7ff;
     }
 
     nav i {
-      font-size: 1rem !important; /* critical fix for icons */
+      font-size: 1rem !important;
       line-height: 1;
     }
 
@@ -67,14 +70,13 @@
     }
 
     /* =========================
-       TOC (ISOLATED PANEL)
+       TOC
        ========================= */
     #toc {
       width: 260px;
       position: sticky;
       top: 20px;
       align-self: flex-start;
-
       border-left: 1px solid #222;
       padding: 1rem;
     }
@@ -86,11 +88,16 @@
       padding-right: 6px;
     }
 
+    /* FIX: TEXT WRAPPING IN TOC */
     #toc a {
       display: block;
       margin: 6px 0;
       font-size: 0.9rem;
       opacity: 0.85;
+
+      white-space: normal;        /* allow wrapping */
+      word-break: break-word;     /* force wrap long strings */
+      overflow-wrap: anywhere;     /* modern browsers */
     }
 
     #toc a:hover {
@@ -114,21 +121,16 @@
     }
 
     /* =========================
-       CRITICAL FIX: IMAGES ONLY IN MAIN
+       IMAGES (SAFE)
        ========================= */
     main img {
-      max-width: 800px !important;
-      width: auto;
+      max-width: 800px;
+      width: 100%;
       height: auto;
       display: block;
       margin: 1rem auto;
       border-radius: 6px;
       border: 1px solid #333;
-    }
-
-    /* prevents accidental global scaling conflicts */
-    img, svg {
-      max-width: 100%;
     }
 
     /* =========================
@@ -155,7 +157,7 @@
     }
 
     /* =========================
-       MOBILE FIX
+       MOBILE
        ========================= */
     @media (max-width: 900px) {
       .container {
@@ -186,10 +188,10 @@
       GitHub view
     </a>
 
-    <!-- ICONS SAFE -->
+    <!-- ICONS WORK AS BEFORE -->
     <!--
-    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
+    <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i> Email</a>
     -->
   </nav>
 </header>
