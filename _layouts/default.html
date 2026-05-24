@@ -5,7 +5,7 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ICONS (fix LinkedIn/Gmail etc.) -->
+  <!-- ICONS (DO NOT TOUCH THIS - required for LinkedIn/email/etc.) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -61,14 +61,22 @@
       opacity: 0.85;
     }
 
-    #toc a:hover { opacity: 1; }
+    #toc a:hover {
+      opacity: 1;
+    }
 
+    /* Smooth anchor spacing */
     h1, h2, h3 {
       scroll-margin-top: 80px;
     }
 
-    /* IMAGES */
-    img {
+    /* =========================
+       IMAGE RULE (SCOPED ONLY)
+       =========================
+       Only applies if you wrap content in:
+       <div class="lab-content">
+    */
+    .lab-content img {
       max-width: 800px;
       width: 100%;
       max-height: 600px;
@@ -95,11 +103,16 @@
       z-index: 999;
     }
 
-    #topBtn:hover { opacity: 1; }
+    #topBtn:hover {
+      opacity: 1;
+    }
 
     /* MOBILE */
     @media (max-width: 900px) {
-      .container { flex-direction: column; }
+      .container {
+        flex-direction: column;
+      }
+
       #toc {
         width: auto;
         border-left: none;
@@ -116,9 +129,12 @@
   <nav>
     <a href="/">Home</a>
     <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
-    <!-- Example icons (optional) -->
-    <!-- <a href="#"><i class="fa-brands fa-linkedin"></i></a> -->
-    <!-- <a href="mailto:you@email.com"><i class="fa-solid fa-envelope"></i></a> -->
+
+    <!-- YOUR ICONS WILL WORK AS-IS -->
+    <!-- Example:
+    <a href="https://linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
+    -->
   </nav>
 </header>
 
@@ -151,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const toc = document.getElementById("toc-list");
   const headings = document.querySelectorAll("main h1, main h2, main h3");
 
-  headings.forEach((h, i) => {
+  headings.forEach((h) => {
     if (!h.id) {
       h.id = h.textContent.toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
