@@ -44,7 +44,7 @@ In chronological order, these three match the question criteria:
 
 Modifying the query to see only successful calls where there is no error:
 
-```bash
+```
 jq -r '.Records[] | select(.userIdentity.userName == "s3user" and .errorCode == null) | "\(.eventTime) — \(.eventName)"' analysis.json | sort
 
 ```
@@ -115,7 +115,7 @@ And consequently, they used **`PutBucketVersioning`** to suspend that safety fea
 
 Knowing the source IP of the threat actor, we can utilize another advanced query to see calls that involve file movement, such as `GetObject`:
 
-```bash
+```
 jq -r '.Records[] | select(.sourceIPAddress == "159.48.53.157") | "\(.eventTime) — \(.eventName) — File: \(.requestParameters.key // "N/A")"' analysis.json | sort
 
 ```
