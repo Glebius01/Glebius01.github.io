@@ -35,7 +35,7 @@ The hint says that SECURITY AWARENESS.docx was opened when a stager was download
 
 To find the stager, we process all the prefetch files from the image and store the output in a convenient format such as .txt.
 
-<img width="1000" height="124" alt="image" src="https://github.com/user-attachments/assets/0ea75edd-ab26-416f-82ef-21bcabd19391" />
+<img width="800" height="124" alt="image" src="https://github.com/user-attachments/assets/0ea75edd-ab26-416f-82ef-21bcabd19391" />
 
 Searching by date leads us straight to the executable SECURITYPATCH.EXE, created at the same time when SECURITY AWARENESS.docx was deleted. Searching by the filename, we can find its location on the Desktop, confirming the suspicion.
 
