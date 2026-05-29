@@ -17,7 +17,7 @@ I'm a Cyber Security Analyst and a tech enthusiast. Here I collect and post my d
 
 | Link | Tags |
 | ---- | ---- |
-| [My first Crackme challenge](https://glebius01.github.io/Labs/Reverse%20Engineering%20I) | #Crackme #Reverse Engineering |
+| [Reverse Engineering I](https://glebius01.github.io/Labs/Reverse%20Engineering%20I) | #Crackme #Reverse Engineering |
 | [Investigating and Responding to a Suspicious VBScript](https://glebius01.github.io/Labs/Case%20SOC189%20-%20VBScript%20Suspicious%20Behavior%20Detected) | #LetsDefend #SOC |
 | [Detecting a SQL Injection](https://glebius01.github.io/Labs/SOC165%20-%20Possible%20SQL%20Injection%20Payload%20Detected) | #LetsDefend #SOC |
 | [Windows Forensics](https://glebius01.github.io/Labs/Windows%20forensics) | #LetsDefend #DFIR |
