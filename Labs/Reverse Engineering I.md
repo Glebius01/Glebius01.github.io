@@ -64,11 +64,3 @@ We can see the real logic, having analysing the code we can deduce that he appli
 * Waits for user input before exiting
 
 <img width="1280" height="800" alt="Screenshot_20260411_211213" src="https://github.com/user-attachments/assets/92c0b8fb-7e0d-40b7-abbc-8831638ba7bc" />
-
-
-The very first crackme done. More upcoming.
-<p align="center">
-  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG01OXU2cjIxdHo2ZnN4a21weXcxbG91YnRlMXYydnZvOTgxbmVkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DA8op0omzFuwe14iyj/giphy.gif"
-       width="250"
-       alt="funny cat gif">
-</p>
