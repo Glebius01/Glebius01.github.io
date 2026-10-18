@@ -204,11 +204,17 @@
       white-space: nowrap;
     }
 
-    /* Platform Colors */
-    .platform-hack-the-box { background: #1a2332; color: #16a34a; border: 1px solid #16a34a; } /* Dark Green HTB */
-    .platform-tryhackme { background: #212c42; color: #ff2b2b; border: 1px solid #ff2b2b; }
-    .platform-letsdefend { background: #111827; color: #38bdf8; border: 1px solid #38bdf8; }
-    .platform-sherlocks { background: #0f172a; color: #c084fc; border: 1px solid #c084fc; }
+    /* Generic Platform Fallback (Catches any unspecified platform) */
+    .badge[class*="platform-"] {
+      background: var(--bg-card-hover); /* Matches the dark card theme */
+      color: #ffffff; 
+      border: 1px solid #ffffff; 
+    }
+
+    /* Specific Platform Overrides (These replace the white fallback) */
+    .badge.platform-hackthebox { background: #1a2332; color: #16a34a; border-color: #16a34a; }
+    .badge.platform-tryhackme { background: #212c42; color: #ff2b2b; border-color: #ff2b2b; }
+    .badge.platform-letsdefend { background: #111827; color: #38bdf8; border-color: #38bdf8; }
 
     /* Difficulty Colors */
     .diff-easy { color: #4ade80; border: 1px solid #4ade80; }
