@@ -1,3 +1,15 @@
+---
+layout: default
+title: Windows Forensics
+platform: LetsDefend
+difficulty: Hard
+skills:
+- DFIR
+- Network Traffic Analysis
+- Windows
+description: "SOC/DFIR investigation of a web application attack against a target web server using Splunk (BOTSv1 2016 dataset). The challenge involves analyzing stream:http, suricata, XmlWinEventLog:Microsoft-Windows-Sysmon/Operational, and DNS logs to uncover automated web vulnerability scanning (Acunetix WVS), HTTP POST brute force credential stuffing, successful access via password replay/transaction analysis, malicious executable upload (.exe payload), Sysmon hash extraction (MD5), and website defacement associated with external C2/domain infrastructure."
+---
+
 ### Summary: 
 This SPLUNK training is based on Splunk Boss of the SOC CTF (BOTSv1 2016). We persume the role of a SOC analyst Alice Bluebird and investigate a website defacement incident. 
 
