@@ -1,33 +1,36 @@
+---
+layout: default
+title: "Home"
+---
+
+<h2>Labs & Writeups</h2>
+
 <div class="writeup-grid">
   {% for lab in site.labs %}
     <a href="{{ lab.url | relative_url }}" class="writeup-card">
-      <div class="writeup-card-content">
-        
-        <div class="writeup-header">
-          <h3 class="writeup-title">{{ lab.title }}</h3>
-          {% if lab.platform %}
-            <span class="badge platform-{{ lab.platform | downcase | replace: ' ', '-' }}">
-              {{ lab.platform }}
-            </span>
-          {% endif %}
-        </div>
+      <div class="writeup-header">
+        <h3 class="writeup-title">{{ lab.title }}</h3>
+        {% if lab.platform %}
+          <span class="badge platform-{{ lab.platform | downcase | replace: ' ', '-' }}">
+            {{ lab.platform }}
+          </span>
+        {% endif %}
+      </div>
 
-        <p class="writeup-desc">{{ lab.description }}</p>
+      <p class="writeup-desc">{{ lab.description }}</p>
 
-        <div class="writeup-footer">
-          {% if lab.difficulty %}
-            <span class="badge diff-{{ lab.difficulty | downcase }}">
-              {{ lab.difficulty }}
-            </span>
-          {% endif %}
-          
-          <div class="writeup-skills">
-            {% for skill in lab.skills %}
-              <span class="skill-tag">{{ skill }}</span>
-            {% endfor %}
-          </div>
-        </div>
+      <div class="writeup-footer">
+        {% if lab.difficulty %}
+          <span class="badge diff-{{ lab.difficulty | downcase }}">
+            {{ lab.difficulty }}
+          </span>
+        {% endif %}
         
+        <div class="writeup-skills">
+          {% for skill in lab.skills %}
+            <span class="skill-tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
       </div>
     </a>
   {% endfor %}
