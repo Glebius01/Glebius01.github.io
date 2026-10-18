@@ -2,6 +2,8 @@ title: "Hlib | Cyber Security Portfolio"
 description: "Security labs, investigations, and technical write-ups"
 markdown: kramdown
 
+collections_dir: .
+
 collections:
   labs:
     output: true
@@ -9,6 +11,6 @@ collections:
 
 defaults:
   - scope:
-      path: ""
+      path: "Labs"
     values:
       layout: default
