@@ -24,7 +24,6 @@ title: "Home"
   {% assign writeups = site.pages | where_exp: "item", "item.path contains 'Labs/'" %}
   
   {% for lab in writeups %}
-    <!-- Removed the strict 'if lab.title' rule so ALL files show up -->
     <a href="{{ lab.url | relative_url }}" 
        class="writeup-card" 
        data-platform="{{ lab.platform }}" 
@@ -75,49 +74,21 @@ title: "Home"
   {% endfor %}
 </div>
 
-      <!-- Displays description if it exists, otherwise leaves empty flex space -->
-      {% if lab.description %}
-        <p class="writeup-desc">{{ lab.description }}</p>
-      {% else %}
-        <p class="writeup-desc"></p> 
-      {% endif %}
-
-      <div class="writeup-footer">
-        {% if lab.difficulty %}
-          <span class="badge diff-{{ lab.difficulty | downcase }}">
-            {{ lab.difficulty }}
-          </span>
-        {% endif %}
-        
-        {% if lab.skills %}
-        <div class="writeup-skills">
-          {% for skill in lab.skills %}
-            <span class="skill-tag">{{ skill }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-
-    </a>
-    {% endif %}
-  {% endfor %}
-</div>
-
 <style>
   /* Enforce medium square-ish boxes */
   .writeup-card {
-    min-height: 260px; /* Gives the card a squarish shape */
+    min-height: 260px;
     display: flex;
     flex-direction: column;
   }
   
   .writeup-desc {
-    flex-grow: 1; /* Pushes the tags to the absolute bottom of the square */
+    flex-grow: 1;
     margin-bottom: 15px;
   }
   
   .writeup-footer {
-    margin-top: auto; /* Aligns footer to bottom securely */
+    margin-top: auto;
   }
 </style>
 
