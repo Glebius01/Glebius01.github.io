@@ -1,3 +1,14 @@
+---
+layout: default
+title: Boss of the Splunk challenges
+platform: TryHackMe
+difficulty: Medium
+skills:
+- DFIR
+- Splunk
+description: "The challenge becomes progressively more difficult with each section. It involves writing complex SPL queries and investigating an insider threat and ransomware incident."
+---
+
 ## Scenario:
 
 In this exercise, you assume the persona of Alice Bluebird, the analyst who successfully assisted Wayne Enterprises and was recommended to Grace Hoppy at Frothly (_a beer company_) to assist them with their recent issues.
