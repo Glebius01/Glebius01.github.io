@@ -38,24 +38,9 @@
     <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌓 Toggle Mode</button>
   </header>
 
-<!-- Page Wrapper for Two-Column Layout -->
-  <div class="page-wrapper {% if page.url contains '/Labs/' %}is-writeup{% endif %}">
-    
-    {% if page.url contains '/Labs/' %}
-    <aside id="toc-sidebar">
-      <div class="toc-sticky">
-        <h3>Table of Contents</h3>
-        <nav id="toc-list">
-          <!-- JS will automatically inject links here -->
-        </nav>
-      </div>
-    </aside>
-    {% endif %}
-
-    <main>
-      {{ content }}
-    </main>
-  </div>
+  <main>
+    {{ content }}
+  </main>
 
   <script>
     // Theme toggle memory logic
@@ -79,37 +64,6 @@
         document.body.classList.add(savedTheme + '-theme');
       }
     })();
-  </script>
-  
-<script>
-    // Automatic Table of Contents Generator
-    document.addEventListener("DOMContentLoaded", function() {
-      const tocList = document.getElementById('toc-list');
-      if (!tocList) return; // Only runs if the TOC sidebar exists
-
-      const headings = document.querySelectorAll('main h1, main h2, main h3');
-      if (headings.length === 0) {
-        document.getElementById('toc-sidebar').style.display = 'none';
-        return;
-      }
-
-      headings.forEach((heading) => {
-        // Create an ID for the heading if it doesn't have one
-        if (!heading.id) {
-          heading.id = heading.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        }
-
-        const link = document.createElement('a');
-        link.href = '#' + heading.id;
-        link.textContent = heading.textContent;
-        
-        // Indent based on header level
-        if (heading.tagName === 'H2') link.style.marginLeft = '12px';
-        if (heading.tagName === 'H3') link.style.marginLeft = '24px';
-
-        tocList.appendChild(link);
-      });
-    });
   </script>
 </body>
 </html>
