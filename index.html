@@ -5,20 +5,25 @@ title: "Home"
 
 <h2>Labs & Writeups</h2>
 
-<!-- Interactive Tag Filters -->
+<!-- Updated Filter Buttons -->
 <div class="filter-container">
   <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+  <button class="filter-btn" onclick="filterCards('Hack The Box', this)">HackTheBox</button>
+  <button class="filter-btn" onclick="filterCards('TryHackMe', this)">TryHackMe</button>
+  <button class="filter-btn" onclick="filterCards('LetsDefend', this)">LetsDefend</button>
   <button class="filter-btn" onclick="filterCards('DFIR', this)">DFIR</button>
-  <button class="filter-btn" onclick="filterCards('Phishing', this)">Phishing</button>
-  <button class="filter-btn" onclick="filterCards('Volatility', this)">Volatility</button>
-  <button class="filter-btn" onclick="filterCards('Log Analysis', this)">Log Analysis</button>
+  <button class="filter-btn" onclick="filterCards('Cloud', this)">Cloud</button>
   <button class="filter-btn" onclick="filterCards('Reverse Engineering', this)">Reverse Engineering</button>
 </div>
 
 <!-- Dynamic Card Grid -->
 <div class="writeup-grid">
-  {% for lab in site.labs %}
-    <a href="{{ lab.url | relative_url }}" class="writeup-card" data-skills="{{ lab.skills | join: ' ' }}">
+  {% assign labs = site.labs | default: site.Labs %}
+  {% for lab in labs %}
+    <a href="{{ lab.url | relative_url }}" 
+       class="writeup-card" 
+       data-platform="{{ lab.platform }}" 
+       data-skills="{{ lab.skills | join: ' ' }}">
       
       <div class="writeup-header">
         <h3 class="writeup-title">{{ lab.title }}</h3>
@@ -50,18 +55,21 @@ title: "Home"
 </div>
 
 <script>
-  // Filter Writeup Cards by Selected Skill Tag
   function filterCards(category, btnElement) {
-    // Update active button state
+    // Highlight selected button
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
 
-    // Show/Hide cards based on skill data attribute
+    const search = category.toLowerCase().replace(/\s+/g, '');
+
+    // Show/hide writeup cards
     const cards = document.querySelectorAll('.writeup-card');
     cards.forEach(card => {
-      const skills = card.getAttribute('data-skills') || '';
-      if (category === 'all' || skills.toLowerCase().includes(category.toLowerCase())) {
+      const platform = (card.getAttribute('data-platform') || '').toLowerCase().replace(/\s+/g, '');
+      const skills = (card.getAttribute('data-skills') || '').toLowerCase().replace(/\s+/g, '');
+      
+      if (category === 'all' || platform.includes(search) || skills.includes(search)) {
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');
