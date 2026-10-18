@@ -1,3 +1,16 @@
+YAML
+
+---
+layout: default
+title: Boogeyman3
+platform: TryHackMe
+difficulty: Medium
+skills:
+  - DFIR
+  - Elastic
+description: "Try Hack Me SOC L1 capstone challenge that involves Elastic digital forensics aiming to uncover the actor's steps (per Cyber Kill Chain)."
+---
+
 ## Summary 
 
 This medium-difficulty capstone project is typically completed at the end of the L1 SOC Analyst path on THM. Although I did not finish that path, I find it gratifying to see how the insights I’ve gained from various courses converge allowing me to draw logical connections between events more quickly while investigating cyber security incidents. The entire lab is based on investigation in ELK. <a href="https://tryhackme.com/room/boogeyman3" target="_blank" rel="noopener noreferrer">Link to this challenge on TryHackMe.</a>
