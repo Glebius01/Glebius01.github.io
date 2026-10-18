@@ -49,16 +49,16 @@
       --tag-text: #cbd5e1;
     }
 
-    body.light-theme {
-      --bg-primary: #f8fafc;
+   body.light-theme {
+      --bg-primary: #f1f5f9;
       --bg-card: #ffffff;
-      --bg-card-hover: #f1f5f9;
+      --bg-card-hover: #e2e8f0;
       --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
+      --text-muted: #334155;
+      --border-color: #cbd5e1;
       --accent: #0284c7;
       --tag-bg: #e2e8f0;
-      --tag-text: #334155;
+      --tag-text: #0f172a;
     }
 
     /* 2. BASE STYLES */
@@ -180,33 +180,40 @@
       margin: 0 0 16px 0;
       flex-grow: 1;
     }
+    
+    /* Fix Writeup Content Readability */
+    main img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    main h1, main h2, main h3, main h4 {
+      color: var(--accent); /* Matches your theme color */
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
 
-    /* 4. BADGES & SKILL TAGS */
     .badge {
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-size: 0.75rem;
+      font-weight: 600;
       padding: 3px 8px;
       border-radius: 4px;
-      text-transform: uppercase;
+      /* text-transform: uppercase; REMOVED to de-capitalize */
       letter-spacing: 0.5px;
       white-space: nowrap;
     }
 
-    .platform-hack-the-box { background: #1a2332; color: #9fef00; border: 1px solid #9fef00; }
-    .platform-tryhackme { background: #212c42; color: #ff2b2b; border: 1px solid #ff2b2b; }
-    .platform-letsdefend { background: #111827; color: #38bdf8; border: 1px solid #38bdf8; }
-    .platform-sherlocks { background: #0f172a; color: #c084fc; border: 1px solid #c084fc; }
-
-    .diff-easy { color: #4ade80; border: 1px solid #4ade80; }
-    .diff-medium { color: #facc15; border: 1px solid #facc15; }
-    .diff-hard { color: #f87171; border: 1px solid #f87171; }
+    /* Changed HTB to dark green */
+    .platform-hack-the-box { background: #1a2332; color: #16a34a; border: 1px solid #16a34a; }
 
     .writeup-footer {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      align-items: flex-start; /* THIS FIXES THE STRETCHED DIFFICULTY BOX */
     }
-
     .writeup-skills {
       display: flex;
       flex-wrap: wrap;
