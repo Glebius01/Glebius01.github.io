@@ -1,3 +1,14 @@
+---
+layout: default
+title: AWS Bucketware
+platform: LetsDefend
+difficulty: Hard
+skills:
+- DFIR
+- Cloud
+description: "In this challenge I acted as an Incident Responder to analyse the steps taken by the attacker to achieve persistence and set up staging for phishing campaigns from the compromised environment."
+---
+
 # AWS Bucketware — Writeup
 
 An attacker used compromised AWS credentials to establish persistence within a cloud environment and propagate large-scale phishing campaigns. In this challenge, as an Incident Responder, you’ll analyze the various steps taken by the attacker to achieve persistence and set up the staging for phishing campaigns from the compromised environment.
