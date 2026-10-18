@@ -6,9 +6,9 @@ difficulty: Easy
 skills:
 - DFIR
 - Network Traffic Analysis
-description: "SOC/DFIR investigation of suspicious login behaviour that gradually reveals exploitation of CVE-2022-25237, remote command execution, and persistence through SSH key injection. The challenge involves working with Zeek, PCAP (Wirseshark, Tshark), MITRE framework, and the attacker's script.
+description: "SOC/DFIR investigation of suspicious login behaviour that gradually reveals exploitation of CVE-2022-25237, remote command execution, and persistence through SSH key injection. The challenge involves working with Zeek, PCAP (Wirseshark, Tshark), MITRE framework, and the attacker's script."
 ---
-  
+
 ### Summary
 
 This Sherlock is focusing on working with Zeek logs and network analysis using PCAP.
