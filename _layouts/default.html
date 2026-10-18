@@ -1,34 +1,97 @@
-<div class="writeup-grid">
-  {% for writeup in site.data.writeups %}
-    <a href="{{ writeup.url | relative_url }}" class="writeup-card">
-      <div class="writeup-card-content">
-        
-        <div class="writeup-header">
-          <h3 class="writeup-title">{{ writeup.title }}</h3>
-          {% if writeup.platform %}
-            <span class="badge platform-{{ writeup.platform | downcase | replace: ' ', '-' }}">
-              {{ writeup.platform }}
-            </span>
-          {% endif %}
-        </div>
+<style>
+  /* Responsive Card Grid */
+  .writeup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+  }
 
-        <p class="writeup-desc">{{ writeup.description }}</p>
+  /* Interactive Card Container */
+  .writeup-card {
+    display: flex;
+    flex-direction: column;
+    background: #181825;
+    border: 1px solid #313244;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #cdd6f4;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+  }
 
-        <div class="writeup-footer">
-          {% if writeup.difficulty %}
-            <span class="badge diff-{{ writeup.difficulty | downcase }}">
-              {{ writeup.difficulty }}
-            </span>
-          {% endif %}
-          
-          <div class="writeup-skills">
-            {% for skill in writeup.skills %}
-              <span class="skill-tag">{{ skill }}</span>
-            {% endfor %}
-          </div>
-        </div>
-        
-      </div>
-    </a>
-  {% endfor %}
-</div>
+  .writeup-card:hover {
+    transform: translateY(-4px);
+    border-color: #89b4fa;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .writeup-card-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .writeup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .writeup-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f38ba8;
+  }
+
+  .writeup-desc {
+    font-size: 0.875rem;
+    color: #a6adc8;
+    line-height: 1.4;
+    margin: 0 0 16px 0;
+    flex-grow: 1;
+  }
+
+  /* Tag Badges */
+  .badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .platform-hack-the-box { background: #1a2332; color: #9fef00; border: 1px solid #9fef00; }
+  .platform-tryhackme { background: #212c42; color: #ff2b2b; border: 1px solid #ff2b2b; }
+  .platform-sherlocks { background: #11111b; color: #89b4fa; border: 1px solid #89b4fa; }
+
+  .diff-easy { color: #a6e3a1; border: 1px solid #a6e3a1; }
+  .diff-medium { color: #f9e2af; border: 1px solid #f9e2af; }
+  .diff-hard { color: #f38ba8; border: 1px solid #f38ba8; }
+
+  /* Skills Pills */
+  .writeup-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .writeup-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    background: #313244;
+    color: #bac2de;
+    font-size: 0.725rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+</style>
