@@ -1,0 +1,306 @@
+/* 1. COLOR VARIABLES & THEMES */
+:root {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --accent: #38bdf8;
+  --tag-bg: #334155;
+  --tag-text: #cbd5e1;
+  /* New dynamic variables */
+  --neutral-badge-text: #ffffff;
+  --neutral-badge-border: #ffffff;
+  --code-inline-bg: #334155;
+  --code-inline-text: #f43f5e; /* Classic pink/red code color */
+  --pre-bg: #0b0f19; /* Extra dark for code blocks */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #334155;
+    --border-color: #cbd5e1;
+    --accent: #0284c7;
+    --tag-bg: #e2e8f0;
+    --tag-text: #0f172a;
+    /* Light mode dynamically updates here */
+    --neutral-badge-text: #334155; /* Dark gray for visibility */
+    --neutral-badge-border: #64748b;
+    --code-inline-bg: #e2e8f0;
+    --code-inline-text: #e11d48;
+    --pre-bg: #f8fafc;
+  }
+}
+
+body.dark-theme {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --accent: #38bdf8;
+  --tag-bg: #334155;
+  --tag-text: #cbd5e1;
+  --neutral-badge-text: #ffffff;
+  --neutral-badge-border: #ffffff;
+  --code-inline-bg: #334155;
+  --code-inline-text: #f43f5e;
+  --pre-bg: #0b0f19;
+}
+
+body.light-theme {
+  --bg-primary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --border-color: #cbd5e1;
+  --accent: #0284c7;
+  --tag-bg: #e2e8f0;
+  --tag-text: #0f172a;
+  --neutral-badge-text: #334155; 
+  --neutral-badge-border: #64748b;
+  --code-inline-bg: #e2e8f0;
+  --code-inline-text: #e11d48;
+  --pre-bg: #f8fafc;
+}
+
+/* 2. BASE STYLES */
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+header h1 { margin: 0; font-size: 1.75rem; }
+header h1 a { color: var(--text-main); text-decoration: none; }
+header p { margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.95rem; }
+
+/* 3. NAVIGATION & ICON STYLES */
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+nav a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+nav i, nav svg {
+  max-width: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+.theme-toggle-btn:hover { background: var(--bg-card-hover); }
+
+/* 4. CARD GRID SYSTEM */
+.writeup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.writeup-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none !important;
+  color: var(--text-main);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.writeup-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.writeup-card.hidden { display: none !important; }
+
+.writeup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.writeup-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.writeup-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+/* 5. WRITEUP CONTENT STYLING */
+main img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+main h1, main h2, main h3, main h4 {
+  color: var(--accent);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- NEW: CODE BLOCK STYLING --- */
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: var(--code-inline-bg);
+  color: var(--code-inline-text);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+pre {
+  background-color: var(--pre-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
+/* Reset code tags that sit inside pre tags so they don't double-style */
+pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 0.9em;
+}
+
+/* 6. BADGES & SKILL TAGS */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Generic Platform Fallback using our new dynamic variables */
+.badge[class*="platform-"] {
+  background: var(--bg-card-hover);
+  color: var(--neutral-badge-text);
+  border: 1px solid var(--neutral-badge-border);
+}
+
+/* Specific Platform Colors */
+.badge.platform-hackthebox { background: #1a2332; color: #16a34a; border-color: #16a34a; }
+.badge.platform-tryhackme { background: #212c42; color: #ff2b2b; border-color: #ff2b2b; }
+.badge.platform-letsdefend { background: #111827; color: #38bdf8; border-color: #38bdf8; }
+
+.diff-easy { color: #4ade80; border: 1px solid #4ade80; }
+.diff-medium { color: #facc15; border: 1px solid #facc15; }
+.diff-hard { color: #f87171; border: 1px solid #f87171; }
+
+.writeup-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.writeup-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* 7. INTERACTIVE FILTER BUTTONS */
+.filter-container {
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
