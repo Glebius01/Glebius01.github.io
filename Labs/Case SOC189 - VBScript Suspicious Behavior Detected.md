@@ -1,5 +1,12 @@
-* TOC
-{:toc}
+---
+layout: default
+title: Suspicious VBScript
+platform: LetsDefend
+difficulty: Easy
+skills:
+- DFIR
+description: "SOC L2 DFIR challenge where I investigated the origin of WSHRAT-type malware and suggested remediation steps."
+---
 
 ### Executive Summary:
 
