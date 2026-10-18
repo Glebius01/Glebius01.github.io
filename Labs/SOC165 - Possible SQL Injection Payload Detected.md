@@ -1,3 +1,14 @@
+---
+layout: default
+title: Investigating a boolean-based SQL injection
+platform: LetsDefend
+difficulty: Easy
+skills:
+- DFIR
+- Network Traffic Analysis
+description: "Simple SOC investigation to determine the type of SQL injection and whether it has been successful."
+---
+
 ### Executive Summary:
 
 A classic Boolean‑based SQL injection attempt was detected against the internal web server 172.16.17.18 from external IP 167.99.169.17 (DigitalOcean, US). The attacker issued six low‑frequency GET requests over four minutes, using an always‑true condition (1 = 1) to test for SQL injection vulnerabilities.
