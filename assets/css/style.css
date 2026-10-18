@@ -1,74 +1,78 @@
 /* 1. COLOR VARIABLES & THEMES */
 :root {
-  --bg-primary: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #334155;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --accent: #38bdf8;
-  --tag-bg: #334155;
-  --tag-text: #cbd5e1;
-  /* New dynamic variables */
+  /* DARK THEME (Default) */
+  --bg-primary: #272640; /* Space Indigo */
+  --bg-card: #212f45; /* Deep Space Blue */
+  --bg-card-hover: #1b3a4b; /* Charcoal Blue */
+  --text-main: #f8fafc; /* Kept white for readability */
+  --text-muted: #cbd5e1; /* Kept light gray for readability */
+  --border-color: #312244; /* Midnight Violet */
+  --accent: #006466; /* Stormy Teal */
+  --tag-bg: #4d194d; /* Deep Purple */
+  --tag-text: #f8fafc;
+  
   --neutral-badge-text: #ffffff;
   --neutral-badge-border: #ffffff;
-  --code-inline-bg: #334155;
-  --code-inline-text: #f43f5e; /* Classic pink/red code color */
-  --pre-bg: #0b0f19; /* Extra dark for code blocks */
+  --code-inline-bg: #144552; /* Dark Teal */
+  --code-inline-text: #006466; /* Stormy Teal */
+  --pre-bg: #0b525b; /* Dark Teal */
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-primary: #f1f5f9;
-    --bg-card: #ffffff;
-    --bg-card-hover: #e2e8f0;
-    --text-main: #0f172a;
-    --text-muted: #334155;
-    --border-color: #cbd5e1;
-    --accent: #0284c7;
-    --tag-bg: #e2e8f0;
-    --tag-text: #0f172a;
-    /* Light mode dynamically updates here */
-    --neutral-badge-text: #334155; /* Dark gray for visibility */
-    --neutral-badge-border: #64748b;
-    --code-inline-bg: #e2e8f0;
-    --code-inline-text: #e11d48;
-    --pre-bg: #f8fafc;
+    /* LIGHT THEME */
+    --bg-primary: #fefae0; /* Cornsilk */
+    --bg-card: #ffffff; /* White for clean contrast */
+    --bg-card-hover: #f5eed3; /* Slightly darkened Cornsilk */
+    --text-main: #283618; /* Black Forest */
+    --text-muted: #606c38; /* Olive Leaf */
+    --border-color: #dda15e; /* Light Caramel */
+    --accent: #bc6c25; /* Copper */
+    --tag-bg: #dda15e; /* Light Caramel */
+    --tag-text: #283618; /* Black Forest */
+    
+    --neutral-badge-text: #283618; 
+    --neutral-badge-border: #606c38;
+    --code-inline-bg: #dda15e;
+    --code-inline-text: #283618;
+    --pre-bg: #f9f4d7;
   }
 }
 
 body.dark-theme {
-  --bg-primary: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #334155;
+  --bg-primary: #272640;
+  --bg-card: #212f45;
+  --bg-card-hover: #1b3a4b;
   --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --accent: #38bdf8;
-  --tag-bg: #334155;
-  --tag-text: #cbd5e1;
+  --text-muted: #cbd5e1;
+  --border-color: #312244;
+  --accent: #006466;
+  --tag-bg: #4d194d;
+  --tag-text: #f8fafc;
+  
   --neutral-badge-text: #ffffff;
   --neutral-badge-border: #ffffff;
-  --code-inline-bg: #334155;
-  --code-inline-text: #f43f5e;
-  --pre-bg: #0b0f19;
+  --code-inline-bg: #144552;
+  --code-inline-text: #7cc7ff; /* Lightened for readability against teal */
+  --pre-bg: #1b3a4b;
 }
 
 body.light-theme {
-  --bg-primary: #f1f5f9;
+  --bg-primary: #fefae0;
   --bg-card: #ffffff;
-  --bg-card-hover: #e2e8f0;
-  --text-main: #0f172a;
-  --text-muted: #334155;
-  --border-color: #cbd5e1;
-  --accent: #0284c7;
-  --tag-bg: #e2e8f0;
-  --tag-text: #0f172a;
-  --neutral-badge-text: #334155; 
-  --neutral-badge-border: #64748b;
-  --code-inline-bg: #e2e8f0;
-  --code-inline-text: #e11d48;
-  --pre-bg: #f8fafc;
+  --bg-card-hover: #f5eed3;
+  --text-main: #283618;
+  --text-muted: #606c38;
+  --border-color: #dda15e;
+  --accent: #bc6c25;
+  --tag-bg: #dda15e;
+  --tag-text: #283618;
+  
+  --neutral-badge-text: #283618; 
+  --neutral-badge-border: #606c38;
+  --code-inline-bg: #dda15e;
+  --code-inline-text: #283618;
+  --pre-bg: #f9f4d7;
 }
 
 /* 2. BASE STYLES */
