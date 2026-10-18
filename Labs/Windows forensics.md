@@ -1,5 +1,13 @@
-* toc
-{:toc}
+---
+layout: default
+title: Windows Forensics
+platform: LetsDefend
+difficulty: Hard
+skills:
+- DFIR
+- Windows
+description: "DFIR investigation on the Windows endpoint uncovering initial access via phishing, execution of a staged executable, defense evasion through MACB timestamp manipulation, and persistence via registry abuse. The challenge involves analyzing Windows registry artifacts (ShellBags, IFEO/SilentProcessExit), $Recycle.Bin ($I/$R files), Prefetch,$MFT ($STANDARD_INFORMATION vs$FILE_NAME), RDP bitmap cache (bmc-tools), and DeepBlueCLI to trace lateral movement, PowerView deployment, and Metasploit-based privilege escalation."
+---
 
 ### Executive Summary
 
