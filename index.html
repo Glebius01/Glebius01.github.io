@@ -5,7 +5,7 @@ title: "Home"
 
 <h2>Labs & Writeups</h2>
 
-<!-- Updated Filter Buttons -->
+<!-- Interactive Tag Filters -->
 <div class="filter-container">
   <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
   <button class="filter-btn" onclick="filterCards('Hack The Box', this)">HackTheBox</button>
@@ -20,8 +20,11 @@ title: "Home"
 
 <!-- Dynamic Card Grid -->
 <div class="writeup-grid">
-  {% assign labs = site.labs | default: site.Labs %}
-  {% for lab in labs %}
+  <!-- Bypasses the _collection rule by filtering all pages in the Labs directory -->
+  {% assign writeups = site.pages | where_exp: "item", "item.path contains 'Labs/'" %}
+  
+  {% for lab in writeups %}
+    {% if lab.title %} <!-- Ensure only files with a title are displayed -->
     <a href="{{ lab.url | relative_url }}" 
        class="writeup-card" 
        data-platform="{{ lab.platform }}" 
@@ -36,7 +39,12 @@ title: "Home"
         {% endif %}
       </div>
 
-      <p class="writeup-desc">{{ lab.description }}</p>
+      <!-- Displays description if it exists, otherwise leaves empty flex space -->
+      {% if lab.description %}
+        <p class="writeup-desc">{{ lab.description }}</p>
+      {% else %}
+        <p class="writeup-desc"></p> 
+      {% endif %}
 
       <div class="writeup-footer">
         {% if lab.difficulty %}
@@ -45,16 +53,37 @@ title: "Home"
           </span>
         {% endif %}
         
+        {% if lab.skills %}
         <div class="writeup-skills">
           {% for skill in lab.skills %}
             <span class="skill-tag">{{ skill }}</span>
           {% endfor %}
         </div>
+        {% endif %}
       </div>
 
     </a>
+    {% endif %}
   {% endfor %}
 </div>
+
+<style>
+  /* Enforce medium square-ish boxes */
+  .writeup-card {
+    min-height: 260px; /* Gives the card a squarish shape */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .writeup-desc {
+    flex-grow: 1; /* Pushes the tags to the absolute bottom of the square */
+    margin-bottom: 15px;
+  }
+  
+  .writeup-footer {
+    margin-top: auto; /* Aligns footer to bottom securely */
+  }
+</style>
 
 <script>
   function filterCards(category, btnElement) {
