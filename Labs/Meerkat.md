@@ -1,9 +1,22 @@
-### Summary 
- This Sherlock is focusing on working with Zeek logs and network analysis using PCAP.
+---
+layout: default
+title: Meerkat
+platform: HackTheBox
+difficulty: Easy
+skills:
+- DFIR
+- Network Traffic Analysis
+description: "SOC/DFIR investigation of suspicious login behaviour that gradually reveals exploitation of CVE-2022-25237, remote command execution, and persistence through SSH key injection. The challenge involves working with Zeek, PCAP (Wirseshark, Tshark), MITRE framework, and the attacker's script.
+---
+  
+### Summary
+
+This Sherlock is focusing on working with Zeek logs and network analysis using PCAP.
  
 [Link to this Sherlock on HTB Labs](https://app.hackthebox.com/sherlocks/552/play)
 
 I used Timeline Explorer to process alert logs because I was working on Windows VM without WSL. Alternatively, jq could be used. For network analysis I used Wireshark, but Tshark was also required to answer one of the questions.
+
 ### Challenge Scenario
 
 As a fast-growing startup, Forela has been utilising a business management platform. Unfortunately, our documentation is scarce, and our administrators aren't the most security aware. As our new security provider we'd like you to have a look at some PCAP and log data we have exported to confirm if we have (or have not) been compromised.
