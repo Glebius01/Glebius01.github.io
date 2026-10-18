@@ -4,104 +4,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
-  
   <style>
-    /* CSS RESETS & BASE STYLES */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
     body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #11111b;
+      color: #cdd6f4;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       line-height: 1.6;
-      padding: 20px;
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
+      padding: 20px;
     }
 
+    a { color: #89b4fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     header {
-      border-bottom: 1px solid #30363d;
-      padding-bottom: 20px;
+      border-bottom: 1px solid #313244;
+      padding-bottom: 15px;
       margin-bottom: 30px;
     }
 
-    header h1 {
-      color: #58a6ff;
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
-
-    header p {
-      color: #8b949e;
-      font-size: 1rem;
-    }
-
-    nav {
-      margin-top: 15px;
-    }
-
-    nav a {
-      color: #58a6ff;
-      text-decoration: none;
-      margin-right: 15px;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* CARD GRID SYSTEM */
+    /* Grid Layout */
     .writeup-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
 
+    /* Interactive Card */
     .writeup-card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 20px;
-      text-decoration: none;
-      color: inherit;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #181825;
+      border: 1px solid #313244;
+      border-radius: 8px;
+      padding: 18px;
+      text-decoration: none !important;
+      color: #cdd6f4;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .writeup-card:hover {
       transform: translateY(-4px);
-      border-color: #58a6ff;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      border-color: #89b4fa;
     }
 
-    .card-header {
+    .writeup-header {
       display: flex;
       justify-content: space-between;
-      align-itemsYes, starting clean from scratch is almost always faster and easier than hunting down a single broken tab or tag in existing files. 
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-Here is a complete, minimal 3-file setup. If you replace your existing files with these three, your site will compile instantly and give you the dark-themed interactive writeup cards you wanted.
+    .writeup-title {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #f38ba8;
+    }
 
----
+    .writeup-desc {
+      font-size: 0.875rem;
+      color: #a6adc8;
+      margin: 0 0 15px 0;
+      flex-grow: 1;
+    }
 
-### File 1: `_config.yml`
-Replace everything in your `_config.yml` with this exact code:
+    /* Badges */
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-```yaml
-title: "Hlib | Cyber Security Portfolio"
-description: "Security labs, investigations, and technical write-ups"
-markdown: kramdown
+    .platform-hack-the-box { background: #1a2332; color: #9fef00; border: 1px solid #9fef00; }
+    .platform-tryhackme { background: #212c42; color: #ff2b2b; border: 1px solid #ff2b2b; }
+    .platform-sherlocks { background: #11111b; color: #89b4fa; border: 1px solid #89b4fa; }
 
-collections:
-  labs:
-    output: true
-    permalink: /labs/:name/
+    .diff-easy { color: #a6e3a1; border: 1px solid #a6e3a1; }
+    .diff-medium { color: #f9e2af; border: 1px solid #f9e2af; }
+    .diff-hard { color: #f38ba8; border: 1px solid #f38ba8; }
 
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
+    .writeup-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .writeup-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .skill-tag {
+      background: #313244;
+      color: #bac2de;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    <p>{{ site.description }}</p>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+</body>
+</html>
