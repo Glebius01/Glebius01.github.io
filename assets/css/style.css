@@ -79,3 +79,64 @@ body.light-theme {
   --code-inline-text: #b91c1c;
   --pre-bg: #f8fafc;
 }
+
+/* 8. LAYOUT & TABLE OF CONTENTS */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Activates the 2-column grid only on writeup pages */
+.page-wrapper.is-writeup {
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+main {
+  flex: 1;
+  min-width: 0; /* Prevents large code blocks/images from blowing out the grid */
+}
+
+#toc-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  display: none; /* Hidden on mobile by default */
+}
+
+/* Show sidebar on desktop screens */
+@media (min-width: 900px) {
+  #toc-sidebar { display: block; }
+}
+
+.toc-sticky {
+  position: sticky;
+  top: 24px;
+  border-left: 2px solid var(--border-color);
+  padding-left: 16px;
+}
+
+.toc-sticky h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+#toc-list a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+#toc-list a:hover {
+  color: var(--accent);
+}
+
+/* Smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+h1, h2, h3, h4 { scroll-margin-top: 24px; }
