@@ -1,3 +1,15 @@
+---
+layout: default
+title: Incident Handling with Splunk
+platform: TryHackMe
+difficulty: Easy
+skills:
+- DFIR
+- Splunk
+- Network Traffic Analysis
+description: "Complex DFIR investigation in Splunk SIEM in response to defacing the website. It involves uncovering the attacker's steps and IOCs according to the Cyber Kill Chain, complex SPL queries writing and Fortigate log analysis."
+---
+
 ### Summary:
 
 This hands-on learning module focuses on using Splunk for security incident detection and response. Based on the _Boss of the SOC_ challenge (_Investigating APT_), it allowed me to enhance my SIEM skills, cyber kill chain investigation, and OSINT techniques through repetition and the gradual learning of new concepts. <a href="https://tryhackme.com/room/splunk201" target="_blank" rel="noopener noreferrer">Link to this challenge on TryHackMe</a>
