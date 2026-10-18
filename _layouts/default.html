@@ -1,229 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="writeup-grid">
+  {% for writeup in site.data.writeups %}
+    <a href="{{ writeup.url | relative_url }}" class="writeup-card">
+      <div class="writeup-card-content">
+        
+        <div class="writeup-header">
+          <h3 class="writeup-title">{{ writeup.title }}</h3>
+          {% if writeup.platform %}
+            <span class="badge platform-{{ writeup.platform | downcase | replace: ' ', '-' }}">
+              {{ writeup.platform }}
+            </span>
+          {% endif %}
+        </div>
 
-  <!-- ICONS (DO NOT TOUCH THIS - required for LinkedIn/email/etc.) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <p class="writeup-desc">{{ writeup.description }}</p>
 
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #0b0f14;
-      color: #e6e6e6;
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 2rem;
-      border-bottom: 1px solid #222;
-    }
-
-    nav a {
-      margin-right: 1rem;
-      color: #7cc7ff;
-      text-decoration: none;
-    }
-
-    a { color: #7cc7ff; }
-
-    .container {
-      display: flex;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      padding: 2rem;
-    }
-
-    /* =========================
-       TOC (scrollable + collapsible)
-       ========================= */
-    #toc {
-      width: 250px;
-      position: sticky;
-      top: 20px;
-      align-self: flex-start;
-      padding: 2rem 1rem;
-      border-left: 1px solid #222;
-      font-size: 0.9rem;
-    }
-
-    #toc a {
-      display: block;
-      margin: 6px 0;
-      color: #7cc7ff;
-      text-decoration: none;
-      opacity: 0.85;
-    }
-
-    #toc a:hover {
-      opacity: 1;
-    }
-
-    /* collapse header */
-    #toc-toggle {
-      cursor: pointer;
-      font-size: 0.85rem;
-      opacity: 0.85;
-      user-select: none;
-      margin-bottom: 10px;
-    }
-
-    #toc-list {
-      max-height: 70vh;
-      overflow-y: auto;
-      padding-right: 6px;
-    }
-
-    #toc.collapsed #toc-list {
-      display: none;
-    }
-
-    #toc.collapsed {
-      width: 60px;
-      overflow: hidden;
-    }
-
-    h1, h2, h3 {
-      scroll-margin-top: 80px;
-    }
-
-    /* =========================
-       IMAGE RULE (ONLY FOR /Labs/)
-       ========================= */
-    body.labs-page main img {
-      max-width: 800px !important;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 1rem auto;
-      border-radius: 6px;
-      border: 1px solid #333;
-      object-fit: contain;
-    }
-
-    /* prevent icons from being affected */
-    nav i, svg {
-      max-width: none !important;
-      width: auto !important;
-      height: auto !important;
-    }
-
-    /* TOP BUTTON */
-    #topBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #111;
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 6px;
-      border: 1px solid #333;
-      display: none;
-      z-index: 999;
-    }
-
-    #topBtn:hover {
-      opacity: 1;
-    }
-
-    /* MOBILE */
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-
-      #toc {
-        width: auto;
-        border-left: none;
-        border-top: 1px solid #222;
-      }
-    }
-  </style>
-</head>
-
-<body class="{% if page.url contains '/Labs/' %}labs-page{% endif %}">
-
-<header>
-  <h1>{{ site.title }}</h1>
-
-  <nav>
-    <a href="/">Home</a>
-    <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs">GitHub view</a>
-
-    <!-- ICONS SAFE -->
-    <!--
-    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="mailto:test@email.com"><i class="fa-solid fa-envelope"></i></a>
-    -->
-  </nav>
-</header>
-
-<div class="container">
-
-  <main>
-    {{ content }}
-  </main>
-
-  <aside id="toc">
-    <div id="toc-toggle">☰ Contents</div>
-    <div id="toc-list"></div>
-  </aside>
-
+        <div class="writeup-footer">
+          {% if writeup.difficulty %}
+            <span class="badge diff-{{ writeup.difficulty | downcase }}">
+              {{ writeup.difficulty }}
+            </span>
+          {% endif %}
+          
+          <div class="writeup-skills">
+            {% for skill in writeup.skills %}
+              <span class="skill-tag">{{ skill }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+    </a>
+  {% endfor %}
 </div>
-
-<a href="#" id="topBtn">↑ Top</a>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* TOP BUTTON */
-  const btn = document.getElementById("topBtn");
-  window.addEventListener("scroll", function () {
-    btn.style.display = window.scrollY > 300 ? "block" : "none";
-  });
-
-  /* TOC GENERATION */
-  const toc = document.getElementById("toc-list");
-  const headings = document.querySelectorAll("main h1, main h2, main h3");
-
-  headings.forEach((h) => {
-    if (!h.id) {
-      h.id = h.textContent.toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-    }
-
-    const a = document.createElement("a");
-    a.href = "#" + h.id;
-    a.textContent = h.textContent;
-
-    if (h.tagName === "H3") {
-      a.style.marginLeft = "15px";
-      a.style.fontSize = "0.85rem";
-      a.style.opacity = "0.8";
-    }
-
-    toc.appendChild(a);
-  });
-
-  /* COLLAPSIBLE TOC */
-  const tocBox = document.getElementById("toc");
-  const toggle = document.getElementById("toc-toggle");
-
-  toggle.addEventListener("click", function () {
-    tocBox.classList.toggle("collapsed");
-  });
-
-});
-</script>
-
-</body>
-</html>
