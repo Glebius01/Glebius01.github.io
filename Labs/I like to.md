@@ -1,3 +1,14 @@
+---
+layout: default
+title: I-like-to
+platform: HackTheBox
+difficulty: Easy
+skills:
+- DFIR
+- Windows
+description: "Windows endpoint DFIR investigation where I worked with KAPE artifacts, MFT parser, TimeLine Explorer, Evtx and IIS logs to uncover the attacker's steps and gather IOCs."
+---
+
 ### Summary: 
 
 *I-like-to* is one of the first Sherlocks HTB has published. Despite being ranked as easy, it still provides a good learning value for a beginner. While working on this challenge, I have acquainted with MOVEit vulnerability, analysed KAPE artifacts, including MFT file, correlated data with raw hex, and answered relevant questions regarding the exploitation of the vulnerability.
@@ -10,7 +21,7 @@
 
 #### 1. Name of the ASPX webshell uploaded by the attacker?
 
-I parcelled MFT using MFTCmd and then opened it with TimeLine Explorer. The first question is to find ASPX web shell, I filtered files extension to .aspx and the first file in the output had missing 0x30 ($Filename information) timestamp which indicates that it was likely uploaded from a different host. 
+I parselled MFT using MFTCmd and then opened it with TimeLine Explorer. The first question is to find ASPX web shell, I filtered files extension to .aspx and the first file in the output had missing 0x30 ($Filename information) timestamp which indicates that it was likely uploaded from a different host. 
 	
 Answer: move.aspx
 
