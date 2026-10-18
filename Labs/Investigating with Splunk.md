@@ -1,3 +1,14 @@
+---
+layout: default
+title: Investigating with Splunk
+platform: TryHackMe
+difficulty: Medium
+skills:
+- DFIR
+- Splunk
+description: "SOC L2 threat hunt in Splunk SIEM to detect a backdoor and related IOCs."
+---
+
 ### Summary: 
 
 Medium difficulty investigation using Splunk on TryHackMe. <a href="https://tryhackme.com/room/investigatingwithsplunk" target="_blank" rel="noopener noreferrer">Link to this challenge</a>
