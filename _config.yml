@@ -2,11 +2,6 @@ title: "Hlib | Cyber Security Portfolio"
 description: "Security labs, investigations, and technical write-ups"
 markdown: kramdown
 
-theme: null
-
-plugins:
-  - jekyll-feed
-
 collections:
   labs:
     output: true
