@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Windows Forensics
-platform: LetsDefend
+title: Boss of the Splunk | Advanced Persistence 
+platform: BOTSv1 2016
 difficulty: Hard
 skills:
 - DFIR
