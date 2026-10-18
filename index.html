@@ -24,20 +24,56 @@ title: "Home"
   {% assign writeups = site.pages | where_exp: "item", "item.path contains 'Labs/'" %}
   
   {% for lab in writeups %}
-    {% if lab.title %} <!-- Ensure only files with a title are displayed -->
+    <!-- Removed the strict 'if lab.title' rule so ALL files show up -->
     <a href="{{ lab.url | relative_url }}" 
        class="writeup-card" 
        data-platform="{{ lab.platform }}" 
        data-skills="{{ lab.skills | join: ' ' }}">
       
       <div class="writeup-header">
-        <h3 class="writeup-title">{{ lab.title }}</h3>
+        <h3 class="writeup-title">
+          <!-- Smart Title Fallback -->
+          {% if lab.title and lab.title != "Summary" and lab.title != "Executive Summary" %}
+            {{ lab.title }}
+          {% else %}
+            <!-- Uses the raw filename, strips extensions, and cleans up hyphens/spaces -->
+            {{ lab.name | replace: ".md", "" | replace: ".html", "" | replace: "-", " " | replace: "%20", " " | capitalize }}
+          {% endif %}
+        </h3>
+        
         {% if lab.platform %}
           <span class="badge platform-{{ lab.platform | downcase | replace: ' ', '-' }}">
             {{ lab.platform }}
           </span>
         {% endif %}
       </div>
+
+      <!-- Displays description if it exists, otherwise leaves empty flex space -->
+      {% if lab.description %}
+        <p class="writeup-desc">{{ lab.description }}</p>
+      {% else %}
+        <p class="writeup-desc"></p> 
+      {% endif %}
+
+      <div class="writeup-footer">
+        {% if lab.difficulty %}
+          <span class="badge diff-{{ lab.difficulty | downcase }}">
+            {{ lab.difficulty }}
+          </span>
+        {% endif %}
+        
+        {% if lab.skills %}
+        <div class="writeup-skills">
+          {% for skill in lab.skills %}
+            <span class="skill-tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+    </a>
+  {% endfor %}
+</div>
 
       <!-- Displays description if it exists, otherwise leaves empty flex space -->
       {% if lab.description %}
