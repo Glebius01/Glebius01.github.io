@@ -5,6 +5,7 @@ platform: LetsDefend
 difficulty: Easy
 skills:
 - DFIR
+- Windows
 description: "SOC L2 DFIR challenge where I investigated the origin of WSHRAT-type malware and suggested remediation steps."
 ---
 
