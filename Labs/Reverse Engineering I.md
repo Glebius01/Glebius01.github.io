@@ -1,5 +1,13 @@
-* TOC
-{:toc}
+---
+layout: default
+title: Introduction to Reverse Engineering
+platform: CrackMe
+difficulty: Easy
+skills:
+- Reverse Engineering
+- Linux
+description: "Deployed an isolated Linux VM using Oracle Virtual Box and conducted static analysis of an executable using Ghidra."
+---
 
 ### Part I. Preparation
 
