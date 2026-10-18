@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
+  
+  <!-- Font Awesome CDN for LinkedIn, GitHub, and Gmail Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
     /* 1. COLOR VARIABLES & THEMES */
     :root {
@@ -72,8 +76,10 @@
 
     header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 20px;
       margin-bottom: 30px;
@@ -82,6 +88,36 @@
     header h1 { margin: 0; font-size: 1.75rem; }
     header h1 a { color: var(--text-main); text-decoration: none; }
     header p { margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* NAVIGATION & ICON STYLES */
+    nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    nav i, nav svg {
+      max-width: none !important;
+      width: auto !important;
+      height: auto !important;
+    }
 
     .theme-toggle-btn {
       background: var(--bg-card);
@@ -217,23 +253,23 @@
 
   <header>
     <div>
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <h1><a href="{{ '/' | relative_url }}">Hlib Shepel</a></h1>
       <p>{{ site.description }}</p>
     </div>
     
     <nav>
-  <a href="/">Home</a>
-  <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs" target="_blank" rel="noopener">
-    <i class="fa-brands fa-github"></i> GitHub view
-  </a>
-  <a href="https://www.linkedin.com/in/gleb-shep/" target="_blank" rel="noopener" aria-label="LinkedIn">
-    <i class="fa-brands fa-linkedin"></i> LinkedIn
-  </a>
-  <a href="mailto:glebshepel1@gmail.com" aria-label="Gmail">
-    <i class="fa-solid fa-envelope"></i> Gmail
-  </a>
+      <a href="/">Home</a>
+      <a href="https://github.com/Glebius01/Glebius01.github.io/tree/main/Labs" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i> GitHub view
+      </a>
+      <a href="https://www.linkedin.com/in/gleb-shep/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="mailto:glebshepel1@gmail.com" aria-label="Gmail">
+        <i class="fa-solid fa-envelope"></i> Gmail
+      </a>
+    </nav>
       
-</nav>
     <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌓 Toggle Mode</button>
   </header>
 
