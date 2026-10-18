@@ -1,13 +1,11 @@
-YAML
-
 ---
 layout: default
 title: Boogeyman3
 platform: TryHackMe
 difficulty: Medium
 skills:
-  - DFIR
-  - Elastic
+- DFIR
+- Elastic
 description: "Try Hack Me SOC L1 capstone challenge that involves Elastic digital forensics aiming to uncover the actor's steps (per Cyber Kill Chain)."
 ---
 
