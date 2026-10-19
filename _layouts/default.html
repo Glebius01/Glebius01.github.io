@@ -13,6 +13,27 @@
 </head>
 <body>
 
+  <!-- Theme: runs first so the page never flashes the wrong colours -->
+  <script>
+    function applyTheme(theme) {
+      document.body.classList.remove('dark-theme', 'light-theme');
+      document.body.classList.add(theme + '-theme');
+    }
+
+    function toggleTheme() {
+      var next = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    }
+
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+    })();
+  </script>
+
   <header>
     <div>
       <h1><a href="{{ '/' | relative_url }}">Hlib Shepel</a></h1>
@@ -41,26 +62,128 @@
     {{ content }}
   </main>
 
+  <!-- Table of contents: built from the write-up's own headings -->
   <script>
-    // Theme toggle memory logic
-    function toggleTheme() {
-      const body = document.body;
-      if (body.classList.contains('dark-theme')) {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
+    (function () {
+      var MAX_LEVEL = 3;        // include h1–h3 (use 4 to add h4)
+      var MIN_HEADINGS = 3;     // don't show a TOC for very short pages
+      var OFFSET = 120;         // px from top of viewport that counts as "current"
 
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.body.classList.add(savedTheme + '-theme');
+      var main = document.querySelector('main');
+      if (!main || main.querySelector('.writeup-grid')) return;   // skip the home page
+
+      var heads = Array.prototype.filter.call(main.querySelectorAll('h1, h2, h3, h4'), function (h) {
+        return Number(h.tagName[1]) <= MAX_LEVEL && h.textContent.trim();
+      });
+
+      // a single leading <h1> is just the page title, so leave it out
+      var h1s = heads.filter(function (h) { return h.tagName === 'H1'; });
+      if (h1s.length === 1 && heads[0] === h1s[0]) heads.shift();
+
+      if (heads.length < MIN_HEADINGS) return;
+
+      // make sure every heading has a unique id to link to
+      var used = {};
+      heads.forEach(function (h) {
+        if (!h.id) {
+          var base = h.textContent.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-') || 'section';
+          var id = base, n = 2;
+          while (document.getElementById(id) || used[id]) id = base + '-' + n++;
+          h.id = id;
+        }
+        used[h.id] = true;
+      });
+
+      var levels = heads.map(function (h) { return Number(h.tagName[1]); });
+      var minLevel = Math.min.apply(null, levels);
+
+      // build <aside class="toc"><details><summary/><ol>…</ol></details></aside>
+      var aside = document.createElement('aside');
+      aside.className = 'toc';
+      aside.setAttribute('aria-label', 'Table of contents');
+
+      var details = document.createElement('details');
+      var summary = document.createElement('summary');
+      summary.textContent = 'CONTENTS';
+      var list = document.createElement('ol');
+
+      var links = {};
+      heads.forEach(function (h, i) {
+        var li = document.createElement('li');
+        li.className = 'toc-l' + Math.min(levels[i] - minLevel, 2);
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent.trim();
+        li.appendChild(a);
+        list.appendChild(li);
+        links[h.id] = a;
+      });
+
+      details.appendChild(summary);
+      details.appendChild(list);
+      aside.appendChild(details);
+
+      // wrap the article so main can become a two-column grid
+      var body = document.createElement('div');
+      body.className = 'writeup-body';
+      while (main.firstChild) body.appendChild(main.firstChild);
+      main.classList.add('has-toc');
+      main.appendChild(aside);
+      main.appendChild(body);
+
+      // open on desktop, collapsed on mobile
+      var wide = window.matchMedia('(min-width: 961px)');
+      function syncOpen() { details.open = wide.matches; }
+      syncOpen();
+      if (wide.addEventListener) wide.addEventListener('change', syncOpen);
+
+      // scroll-spy
+      var currentId = null;
+      function setActive(id) {
+        if (id === currentId) return;
+        if (currentId) {
+          links[currentId].classList.remove('active');
+          links[currentId].removeAttribute('aria-current');
+        }
+        currentId = id;
+        var a = links[id];
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'true');
+
+        // keep the active link visible inside the sticky sidebar
+        if (aside.scrollHeight > aside.clientHeight) {
+          var top = a.offsetTop, bottom = top + a.offsetHeight;
+          if (top < aside.scrollTop + 24 || bottom > aside.scrollTop + aside.clientHeight - 24) {
+            aside.scrollTo({ top: top - aside.clientHeight / 2, behavior: 'smooth' });
+          }
+        }
       }
+
+      function update() {
+        var current = heads[0];
+        heads.forEach(function (h) {
+          if (h.getBoundingClientRect().top <= OFFSET) current = h;
+        });
+        var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (atBottom) current = heads[heads.length - 1];
+        setActive(current.id);
+      }
+
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () { update(); ticking = false; });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+
+      // on mobile, collapse the list after jumping to a section
+      list.addEventListener('click', function (e) {
+        if (e.target.closest('a') && !wide.matches) details.open = false;
+      });
     })();
   </script>
 </body>
