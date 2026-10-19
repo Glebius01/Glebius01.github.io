@@ -62,128 +62,210 @@
     {{ content }}
   </main>
 
-  <!-- Table of contents: built from the write-up's own headings -->
+  {% unless page.url == '/' %}
+  <!-- Back to the writeups list (not shown on the home page) -->
+  <a class="back-home" href="{{ '/' | relative_url }}" aria-label="Back to all writeups">
+    <i class="fa-solid fa-arrow-left"></i><span>All writeups</span>
+  </a>
+  {% endunless %}
+
+  <!-- Writeup pages: centred column, optional TOC, screenshot lightbox -->
   <script>
     (function () {
-      var MAX_LEVEL = 3;        // include h1–h3 (use 4 to add h4)
-      var MIN_HEADINGS = 3;     // don't show a TOC for very short pages
-      var OFFSET = 120;         // px from top of viewport that counts as "current"
+      var MAX_LEVEL = 3;        // TOC includes h1–h3 (use 4 to add h4)
+      var MIN_HEADINGS = 3;     // fewer headings than this = no TOC, text stays centred
+      var OFFSET = 120;         // px from top of viewport that counts as "current section"
 
       var main = document.querySelector('main');
       if (!main || main.querySelector('.writeup-grid')) return;   // skip the home page
 
+      /* ---------- collect headings (before we move any nodes) ---------- */
       var heads = Array.prototype.filter.call(main.querySelectorAll('h1, h2, h3, h4'), function (h) {
         return Number(h.tagName[1]) <= MAX_LEVEL && h.textContent.trim();
       });
-
-      // a single leading <h1> is just the page title, so leave it out
       var h1s = heads.filter(function (h) { return h.tagName === 'H1'; });
-      if (h1s.length === 1 && heads[0] === h1s[0]) heads.shift();
+      if (h1s.length === 1 && heads[0] === h1s[0]) heads.shift();   // lone h1 = page title
 
-      if (heads.length < MIN_HEADINGS) return;
-
-      // make sure every heading has a unique id to link to
-      var used = {};
-      heads.forEach(function (h) {
-        if (!h.id) {
-          var base = h.textContent.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-') || 'section';
-          var id = base, n = 2;
-          while (document.getElementById(id) || used[id]) id = base + '-' + n++;
-          h.id = id;
-        }
-        used[h.id] = true;
-      });
-
-      var levels = heads.map(function (h) { return Number(h.tagName[1]); });
-      var minLevel = Math.min.apply(null, levels);
-
-      // build <aside class="toc"><details><summary/><ol>…</ol></details></aside>
-      var aside = document.createElement('aside');
-      aside.className = 'toc';
-      aside.setAttribute('aria-label', 'Table of contents');
-
-      var details = document.createElement('details');
-      var summary = document.createElement('summary');
-      summary.textContent = 'CONTENTS';
-      var list = document.createElement('ol');
-
-      var links = {};
-      heads.forEach(function (h, i) {
-        var li = document.createElement('li');
-        li.className = 'toc-l' + Math.min(levels[i] - minLevel, 2);
-        var a = document.createElement('a');
-        a.href = '#' + h.id;
-        a.textContent = h.textContent.trim();
-        li.appendChild(a);
-        list.appendChild(li);
-        links[h.id] = a;
-      });
-
-      details.appendChild(summary);
-      details.appendChild(list);
-      aside.appendChild(details);
-
-      // wrap the article so main can become a two-column grid
+      /* ---------- wrap the article in a centred reading column ---------- */
       var body = document.createElement('div');
       body.className = 'writeup-body';
       while (main.firstChild) body.appendChild(main.firstChild);
-      main.classList.add('has-toc');
-      main.appendChild(aside);
+      main.classList.add('is-writeup');
       main.appendChild(body);
 
-      // open on desktop, collapsed on mobile
-      var wide = window.matchMedia('(min-width: 961px)');
-      function syncOpen() { details.open = wide.matches; }
-      syncOpen();
-      if (wide.addEventListener) wide.addEventListener('change', syncOpen);
+      if (heads.length >= MIN_HEADINGS) buildToc();
+      initLightbox();
 
-      // scroll-spy
-      var currentId = null;
-      function setActive(id) {
-        if (id === currentId) return;
-        if (currentId) {
-          links[currentId].classList.remove('active');
-          links[currentId].removeAttribute('aria-current');
-        }
-        currentId = id;
-        var a = links[id];
-        a.classList.add('active');
-        a.setAttribute('aria-current', 'true');
+      /* ============================ TOC ============================ */
+      function buildToc() {
+        var used = {};
+        heads.forEach(function (h) {
+          if (!h.id) {
+            var base = h.textContent.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-') || 'section';
+            var id = base, n = 2;
+            while (document.getElementById(id) || used[id]) id = base + '-' + n++;
+            h.id = id;
+          }
+          used[h.id] = true;
+        });
 
-        // keep the active link visible inside the sticky sidebar
-        if (aside.scrollHeight > aside.clientHeight) {
-          var top = a.offsetTop, bottom = top + a.offsetHeight;
-          if (top < aside.scrollTop + 24 || bottom > aside.scrollTop + aside.clientHeight - 24) {
-            aside.scrollTo({ top: top - aside.clientHeight / 2, behavior: 'smooth' });
+        var levels = heads.map(function (h) { return Number(h.tagName[1]); });
+        var minLevel = Math.min.apply(null, levels);
+
+        var aside = document.createElement('aside');
+        aside.className = 'toc';
+        aside.setAttribute('aria-label', 'Table of contents');
+        var details = document.createElement('details');
+        var summary = document.createElement('summary');
+        summary.textContent = 'CONTENTS';
+        var list = document.createElement('ol');
+        var links = {};
+
+        heads.forEach(function (h, i) {
+          var li = document.createElement('li');
+          li.className = 'toc-l' + Math.min(levels[i] - minLevel, 2);
+          var a = document.createElement('a');
+          a.href = '#' + h.id;
+          a.textContent = h.textContent.trim();
+          li.appendChild(a);
+          list.appendChild(li);
+          links[h.id] = a;
+        });
+
+        details.appendChild(summary);
+        details.appendChild(list);
+        aside.appendChild(details);
+        main.classList.add('has-toc');
+        main.insertBefore(aside, body);
+
+        var wide = window.matchMedia('(min-width: 961px)');
+        function syncOpen() { details.open = wide.matches; }
+        syncOpen();
+        if (wide.addEventListener) wide.addEventListener('change', syncOpen);
+
+        var currentId = null;
+        function setActive(id) {
+          if (id === currentId) return;
+          if (currentId) {
+            links[currentId].classList.remove('active');
+            links[currentId].removeAttribute('aria-current');
+          }
+          currentId = id;
+          var a = links[id];
+          a.classList.add('active');
+          a.setAttribute('aria-current', 'true');
+          if (aside.scrollHeight > aside.clientHeight) {
+            var top = a.offsetTop, bottom = top + a.offsetHeight;
+            if (top < aside.scrollTop + 24 || bottom > aside.scrollTop + aside.clientHeight - 24) {
+              aside.scrollTo({ top: top - aside.clientHeight / 2, behavior: 'smooth' });
+            }
           }
         }
-      }
 
-      function update() {
-        var current = heads[0];
-        heads.forEach(function (h) {
-          if (h.getBoundingClientRect().top <= OFFSET) current = h;
+        function update() {
+          var current = heads[0];
+          heads.forEach(function (h) {
+            if (h.getBoundingClientRect().top <= OFFSET) current = h;
+          });
+          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+            current = heads[heads.length - 1];
+          }
+          setActive(current.id);
+        }
+
+        var ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () { update(); ticking = false; });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
+
+        list.addEventListener('click', function (e) {
+          if (e.target.closest('a') && !wide.matches) details.open = false;
         });
-        var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-        if (atBottom) current = heads[heads.length - 1];
-        setActive(current.id);
       }
 
-      var ticking = false;
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () { update(); ticking = false; });
+      /* ========================= LIGHTBOX ========================= */
+      function initLightbox() {
+        // screenshots inside links keep their link behaviour; add class "no-zoom" to opt out
+        var imgs = Array.prototype.filter.call(body.querySelectorAll('img'), function (img) {
+          return !img.closest('a') && !img.classList.contains('no-zoom');
+        });
+        if (!imgs.length) return;
+
+        var overlay = document.createElement('div');
+        overlay.className = 'lightbox' + (imgs.length === 1 ? ' single' : '');
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Image viewer');
+        overlay.innerHTML =
+          '<button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>' +
+          '<button type="button" class="lb-btn lb-prev" aria-label="Previous image">&#8249;</button>' +
+          '<button type="button" class="lb-btn lb-next" aria-label="Next image">&#8250;</button>' +
+          '<figure><img alt=""><figcaption></figcaption></figure>';
+        document.body.appendChild(overlay);
+
+        var full = overlay.querySelector('img');
+        var caption = overlay.querySelector('figcaption');
+        var closeBtn = overlay.querySelector('.lb-close');
+        var index = 0, lastFocus = null;
+
+        function show(i) {
+          index = (i + imgs.length) % imgs.length;
+          var src = imgs[index];
+          full.src = src.currentSrc || src.src;
+          full.alt = src.alt || '';
+          caption.textContent = (src.alt ? src.alt + '  ' : '') + '(' + (index + 1) + '/' + imgs.length + ')';
+        }
+        function open(i) {
+          lastFocus = document.activeElement;
+          show(i);
+          overlay.classList.add('open');
+          document.body.classList.add('lb-open');
+          closeBtn.focus();
+        }
+        function close() {
+          overlay.classList.remove('open');
+          document.body.classList.remove('lb-open');
+          full.removeAttribute('src');
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        imgs.forEach(function (img, i) {
+          img.classList.add('zoomable');
+          img.setAttribute('tabindex', '0');
+          img.setAttribute('role', 'button');
+          img.setAttribute('aria-label', 'Expand image' + (img.alt ? ': ' + img.alt : ''));
+          img.addEventListener('click', function () { open(i); });
+          img.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+          });
+        });
+
+        overlay.addEventListener('click', function (e) {
+          if (e.target.closest('.lb-prev')) { show(index - 1); return; }
+          if (e.target.closest('.lb-next')) { show(index + 1); return; }
+          close();   // close button, backdrop or the image itself
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (!overlay.classList.contains('open')) return;
+          if (e.key === 'Escape') close();
+          else if (e.key === 'ArrowLeft' && imgs.length > 1) show(index - 1);
+          else if (e.key === 'ArrowRight' && imgs.length > 1) show(index + 1);
+          else if (e.key === 'Tab') {                     // keep focus inside the viewer
+            var btns = Array.prototype.filter.call(overlay.querySelectorAll('button'), function (b) {
+              return b.offsetParent !== null;
+            });
+            var first = btns[0], last = btns[btns.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+          }
+        });
       }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      update();
-
-      // on mobile, collapse the list after jumping to a section
-      list.addEventListener('click', function (e) {
-        if (e.target.closest('a') && !wide.matches) details.open = false;
-      });
     })();
   </script>
 </body>
