@@ -1,5 +1,7 @@
 /* 1. TOKENS ------------------------------------------------ */
 :root {
+  color-scheme: dark;
+
   --font-body: "Inter", -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, Menlo, Consolas, monospace;
   --font-header: var(--font-mono);
@@ -8,96 +10,6 @@
   --ease: 0.18s ease;
 
   /* DARK (default) */
-  --bg-primary: #0a0d12;
-  --bg-card: #11161d;
-  --bg-card-hover: #19212b;
-  --text-main: #ffffff;
-  --text-muted: #9aa7b8;
-  --border-color: #232d3a;
-  --accent: #3ddc97;
-  --accent-contrast: #04120b;      /* text on accent background */
-  --tag-bg: #19212b;
-  --tag-text: #d5dde8;
-  --focus-ring: #3ddc97;
-  --shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.7);
-
-  --code-inline-bg: #19212b;
-  --code-inline-text: #3ddc97;
-  --pre-bg: #05070a;
-  --pre-text: #e6edf3;
-
-  --neutral-badge-text: #ffffff;
-  --neutral-badge-border: #4b5a6c;
-  --diff-easy: #4ade80;
-  --diff-medium: #fbbf24;
-  --diff-hard: #ff6b6b;
-  --plat-htb: #9fef00;
-  --plat-thm: #ff5c5c;
-  --plat-ld: #38bdf8;
-}
-
-/* LIGHT: follows the OS setting unless the visitor forced dark */
-@media (prefers-color-scheme: light) {
-  body:not(.dark-theme) {
-    --bg-primary: #fefae0;          /* Cornsilk */
-    --bg-card: #fffdf1;
-    --bg-card-hover: #f6edc4;
-    --text-main: #283618;           /* Black Forest */
-    --text-muted: #55613a;
-    --border-color: #dcd3a4;
-    --accent: #606c38;              /* Olive Leaf */
-    --accent-contrast: #fefae0;
-    --tag-bg: rgba(221, 161, 94, 0.28);   /* Light Caramel */
-    --tag-text: #283618;
-    --focus-ring: #bc6c25;          /* Copper */
-    --shadow: 0 12px 26px -14px rgba(40, 54, 24, 0.45);
-
-    --code-inline-bg: rgba(221, 161, 94, 0.28);
-    --code-inline-text: #7a4210;
-    --pre-bg: #283618;              /* dark block = high-contrast code */
-    --pre-text: #fefae0;
-
-    --neutral-badge-text: #283618;
-    --neutral-badge-border: #606c38;
-    --diff-easy: #4d5a28;
-    --diff-medium: #8f5316;
-    --diff-hard: #9b2c1c;
-    --plat-htb: #3f6b0f;
-    --plat-thm: #a62727;
-    --plat-ld: #0b5d8a;
-  }
-}
-
-body.light-theme {
-  --bg-primary: #fefae0;
-  --bg-card: #fffdf1;
-  --bg-card-hover: #f6edc4;
-  --text-main: #283618;
-  --text-muted: #55613a;
-  --border-color: #dcd3a4;
-  --accent: #606c38;
-  --accent-contrast: #fefae0;
-  --tag-bg: rgba(221, 161, 94, 0.28);
-  --tag-text: #283618;
-  --focus-ring: #bc6c25;
-  --shadow: 0 12px 26px -14px rgba(40, 54, 24, 0.45);
-
-  --code-inline-bg: rgba(221, 161, 94, 0.28);
-  --code-inline-text: #7a4210;
-  --pre-bg: #283618;
-  --pre-text: #fefae0;
-
-  --neutral-badge-text: #283618;
-  --neutral-badge-border: #606c38;
-  --diff-easy: #4d5a28;
-  --diff-medium: #8f5316;
-  --diff-hard: #9b2c1c;
-  --plat-htb: #3f6b0f;
-  --plat-thm: #a62727;
-  --plat-ld: #0b5d8a;
-}
-
-body.dark-theme {
   --bg-primary: #0a0d12;
   --bg-card: #11161d;
   --bg-card-hover: #19212b;
@@ -124,6 +36,38 @@ body.dark-theme {
   --plat-htb: #9fef00;
   --plat-thm: #ff5c5c;
   --plat-ld: #38bdf8;
+}
+
+/* LIGHT: palette colours, with text/accent shades pushed darker */
+body.light-theme {
+  color-scheme: light;
+
+  --bg-primary: #fefae0;            /* Cornsilk */
+  --bg-card: #fffdf1;
+  --bg-card-hover: #f4e9b8;
+  --text-main: #121a0a;             /* Black Forest, darkened (~16:1) */
+  --text-muted: #36411f;            /* ~9.5:1 on Cornsilk */
+  --border-color: #b5a96f;
+  --accent: #3f4b24;                /* Olive Leaf, darkened (~8.5:1) */
+  --accent-contrast: #fefae0;
+  --tag-bg: rgba(221, 161, 94, 0.32);   /* Light Caramel tint */
+  --tag-text: #121a0a;
+  --focus-ring: #a65d16;            /* Copper, slightly deeper */
+  --shadow: 0 12px 26px -14px rgba(40, 54, 24, 0.55);
+
+  --code-inline-bg: rgba(221, 161, 94, 0.32);
+  --code-inline-text: #5a2f07;
+  --pre-bg: #283618;                /* Black Forest block */
+  --pre-text: #fefae0;
+
+  --neutral-badge-text: #121a0a;
+  --neutral-badge-border: #3f4b24;
+  --diff-easy: #35441a;
+  --diff-medium: #7a4410;
+  --diff-hard: #8a2316;
+  --plat-htb: #2d5208;
+  --plat-thm: #8f1d1d;
+  --plat-ld: #07496f;
 }
 
 /* 2. BASE & LAYOUT ----------------------------------------- */
@@ -168,38 +112,20 @@ header h1 {
 }
 
 header h1 a { color: var(--text-main); text-decoration: none; }
-
-/* terminal prompt before the name */
-header h1 a::before {
-  content: "> ";
-  color: var(--accent);
-}
-
-header h1 a::after {
-  content: "_";
-  color: var(--accent);
-  animation: blink 1.1s steps(1) infinite;
-}
+header h1 a::before { content: "> "; color: var(--accent); }
+header h1 a::after  { content: "_"; color: var(--accent); animation: blink 1.1s steps(1) infinite; }
 
 @keyframes blink { 50% { opacity: 0; } }
 
-header p {
-  margin: 4px 0 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
+header p { margin: 4px 0 0; color: var(--text-muted); font-size: 0.95rem; }
 
 main { padding-top: 40px; padding-bottom: 80px; }
-
-main > h2:first-child { margin-top: 0; }
+main > h2:first-child,
+.writeup-body > :first-child { margin-top: 0; }
 
 a { color: var(--accent); }
 
-:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 3px;
-}
-
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 ::selection { background: var(--accent); color: var(--accent-contrast); }
 
 /* 3. NAVIGATION -------------------------------------------- */
@@ -279,7 +205,6 @@ nav a:hover::after { transform: scaleX(1); }
               background var(--ease), box-shadow var(--ease);
 }
 
-/* accent bar that grows on hover */
 .writeup-card::before {
   content: "";
   position: absolute;
@@ -335,6 +260,7 @@ main h1, main h2, main h3, main h4 {
   color: var(--text-main);
   line-height: 1.3;
   margin: 2rem 0 0.6rem;
+  scroll-margin-top: 24px;       /* keeps jumped-to headings off the edge */
 }
 
 main h2 {
@@ -342,7 +268,7 @@ main h2 {
   border-bottom: 1px solid var(--border-color);
 }
 
-main h2::before { content: "## "; color: var(--accent); }
+main h2::before { content: "## ";  color: var(--accent); }
 main h3::before { content: "### "; color: var(--accent); }
 
 main p, main li { max-width: 78ch; }
@@ -367,12 +293,12 @@ main blockquote {
 }
 
 main table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.92rem;
-  display: block;
-  overflow-x: auto;
 }
 
 main th, main td {
@@ -405,12 +331,7 @@ pre {
   tab-size: 2;
 }
 
-pre code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  font-size: 0.88rem;
-}
+pre code { background: transparent; color: inherit; padding: 0; font-size: 0.88rem; }
 
 /* 6. BADGES & TAGS ----------------------------------------- */
 .badge {
@@ -420,17 +341,13 @@ pre code {
   border-radius: var(--radius);
   background: transparent;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;           /* keeps HackTheBox / TryHackMe / LetsDefend as written */
   white-space: nowrap;
 }
 
-.badge[class*="platform-"] {
-  color: var(--neutral-badge-text);
-  border-color: var(--neutral-badge-border);
-}
+.badge[class*="platform-"] { color: var(--neutral-badge-text); border-color: var(--neutral-badge-border); }
 .badge.platform-hackthebox { color: var(--plat-htb); border-color: var(--plat-htb); }
 .badge.platform-tryhackme  { color: var(--plat-thm); border-color: var(--plat-thm); }
 .badge.platform-letsdefend { color: var(--plat-ld);  border-color: var(--plat-ld); }
@@ -439,13 +356,7 @@ pre code {
 .diff-medium { color: var(--diff-medium); border-color: var(--diff-medium); }
 .diff-hard   { color: var(--diff-hard);   border-color: var(--diff-hard); }
 
-.writeup-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
+.writeup-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .writeup-skills { display: flex; flex-wrap: wrap; gap: 6px; }
 
 .skill-tag {
@@ -459,13 +370,7 @@ pre code {
 }
 
 /* 7. FILTER BUTTONS ---------------------------------------- */
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 24px;
-}
+.filter-container { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 24px; }
 
 .filter-btn {
   background: transparent;
@@ -479,10 +384,7 @@ pre code {
   transition: all var(--ease);
 }
 
-.filter-btn:hover {
-  color: var(--text-main);
-  border-color: var(--accent);
-}
+.filter-btn:hover { color: var(--text-main); border-color: var(--accent); }
 
 .filter-btn.active {
   background: var(--accent);
@@ -491,7 +393,91 @@ pre code {
   font-weight: 600;
 }
 
-/* 8. RESPONSIVE & ACCESSIBILITY ---------------------------- */
+/* 8. TABLE OF CONTENTS (write-ups only; built by script) --- */
+main.has-toc {
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  column-gap: 56px;
+  align-items: start;
+}
+
+.writeup-body { min-width: 0; }
+
+.toc {
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  font-size: 0.85rem;
+}
+
+.toc summary {
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.toc summary::before { content: "// "; }
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--border-color);
+}
+
+.toc li { max-width: none; }
+
+.toc a {
+  display: block;
+  margin-left: -1px;
+  padding: 5px 12px;
+  border-left: 2px solid transparent;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color var(--ease), border-color var(--ease), background var(--ease);
+}
+
+.toc a:hover { color: var(--text-main); background: var(--bg-card); }
+
+.toc a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.toc .toc-l1 a { padding-left: 26px; font-size: 0.82rem; }
+.toc .toc-l2 a { padding-left: 40px; font-size: 0.8rem; }
+
+/* wide screens: summary is just a label */
+@media (min-width: 961px) {
+  .toc summary { pointer-events: none; cursor: default; list-style: none; }
+  .toc summary::-webkit-details-marker { display: none; }
+}
+
+/* narrow screens: TOC becomes a collapsible box above the article */
+@media (max-width: 960px) {
+  main.has-toc { display: block; }
+  .toc {
+    position: static;
+    max-height: 60vh;
+    margin-bottom: 32px;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+  }
+  .toc details:not([open]) summary { margin-bottom: 0; }
+}
+
+/* 9. RESPONSIVE & ACCESSIBILITY ---------------------------- */
 @media (max-width: 600px) {
   header, main, footer { padding-left: 16px; padding-right: 16px; }
   .writeup-grid { grid-template-columns: 1fr; }
@@ -504,4 +490,9 @@ pre code {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+@media print {
+  .toc, .theme-toggle-btn, nav { display: none !important; }
+  main.has-toc { display: block; }
 }
