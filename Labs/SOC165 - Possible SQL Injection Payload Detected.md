@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Investigating a boolean-based SQL injection
+title: Investigating a SQL injection
 platform: LetsDefend
 difficulty: Easy
 skills:
