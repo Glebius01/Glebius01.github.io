@@ -9,14 +9,15 @@ skills:
 description: "Simple SOC investigation to determine the type of SQL injection and whether it has been successful."
 ---
 
-### Executive Summary:
+## Summary:
 
 A classic Boolean‑based SQL injection attempt was detected against the internal web server 172.16.17.18 from external IP 167.99.169.17 (DigitalOcean, US). The attacker issued six low‑frequency GET requests over four minutes, using an always‑true condition (1 = 1) to test for SQL injection vulnerabilities.
 
 Network logs indicate the requests were permitted, but no sensitive data was returned, and analysis suggests the attack was unsuccessful. The incident has been closed with no further action required.
 
-### Key Entities:
+## Investigation notes:
 
+#### Key Entities:
 Hostname: WebServer1001
 Destination IP Address: 172.16.17.18
 Source IP Address: 167.99.169.17
@@ -28,7 +29,7 @@ Device Action: Allowed
 Primary user: webadmin  
 Last login: February 10, 2022, 11:12 PM
 
-### Investigation notes: 
+---
 
 The alert was triggered on **February 25, 2022, at 11:34** upon detecting possible SQL injection. We start the investigation by verifying the alert and decoding the URL to confirm the type of attack.
 
