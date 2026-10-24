@@ -10,8 +10,10 @@ skills:
 description: "DFIR investigation in Splunk SIEM in response to the website defacement that aims to uncover the attacker's persistence mechanism and C2 communication."
 ---
 
-### Summary: 
-SOC/DFIR investigation of a web application attack against a target web server using Splunk. The challenge involves network analysis to uncover automated web vulnerability scanning (Acunetix WVS), HTTP POST brute force credential stuffing, successful access via password replay/transaction analysis, malicious executable upload (.exe payload), Sysmon hash extraction (MD5), and website defacement associated with external C2/domain infrastructure. 
+## Summary: 
+SOC/DFIR investigation of a web application attack against a target web server using Splunk. The challenge involves network analysis to uncover automated web vulnerability scanning (Acunetix WVS), HTTP POST brute force credential stuffing, successful access via password replay/transaction analysis, malicious executable upload (.exe payload), Sysmon hash extraction (MD5), and website defacement associated with external C2/domain infrastructure.
+
+## Walkthrough:
 
 #### Finding the IP Scanning Your Web Server
 
