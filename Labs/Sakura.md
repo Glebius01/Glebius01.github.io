@@ -64,3 +64,9 @@ Just as we thought, the cybercriminal is fully aware that we are gathering infor
 
 We've taken a screenshot of the message sent to us by the attacker, you can view it in your browser here (https://raw.githubusercontent.com/OsintDojo/public/main/taunt.png).
 
+#### What is the attacker's current Twitter handle?
+
+Answer: @SakuraLoverAiko
+
+#### What is the BSSID for the attacker's Home WiFi?
+
