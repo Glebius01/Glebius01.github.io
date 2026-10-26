@@ -14,8 +14,8 @@ Answer: SakuraSnowAngelAiko
 
 Searching the nickname on Google I found Github account (https://github.com/sakurasnowangelaiko), Twitter account (https://x.com/sakuraloveraiko?lang=en), and Lead Contact page (https://leadcontact.ai/en/contact/sakurasnowangelaiko).
 
-On his Github among cryptominers there is left PGP public key. The key usually has metadata related to the registrar. It can be decrypted using John the Ripper (offline) or if private key is known via Cyber Chef functions. I managed to find this tool https://cirw.in/gpg-decoder/ which easily decrypt User ID Packet (0xd)
-for me.
+On his Github among cryptominers there is left a PGP public key. The key usually has metadata related to the registrar. It can be decrypted using John the Ripper (offline) or if private key is known via Cyber Chef functions. I managed to find this tool https://cirw.in/gpg-decoder/ which easily decrypt User ID Packet (0xd) for me.
+
 <img width="1114" height="200" alt="image" src="https://github.com/user-attachments/assets/1c64b18d-183a-48d4-930a-a02137bd7390" />
 
 To validate whether the email is valid, we can send a test email. If it's delivered - it's working.
@@ -34,8 +34,9 @@ It seems the cybercriminal is aware that we are on to them. As we were investiga
 
 #### What cryptocurrency does the attacker own a cryptocurrency wallet for?
 
-Found a hint that the wallet is in Ethereum in one his Github repositories.
-"stratum://ethwallet.workerid:password@miningpool:port".
+Found a hint that the wallet is in Ethereum in one his Github repositories: "stratum://ethwallet.workerid:password@miningpool:port".
+
+Answer: Ethereum
 <img width="1914" height="470" alt="image" src="https://github.com/user-attachments/assets/246a90b1-c7d2-4bbc-a8b0-fce27a091b7b" />
 
 #### What is the attacker's cryptocurrency wallet address?
@@ -70,3 +71,46 @@ Answer: @SakuraLoverAiko
 
 #### What is the BSSID for the attacker's Home WiFi?
 
+Scrolling down his Twitter (X) page we can find this comment talking about a paste site (online text-sharing platforms). The words DEEP and PASTE are capitalised and from the screenshot we can see MD5 and some sort of a site being used.
+
+<img width="765" height="407" alt="image" src="https://github.com/user-attachments/assets/b84a8fc8-29d4-486b-8ac4-bba1db78b3a6" />
+
+Having browsed around in the internet, I discover that this site was accessible only from .onion and is now outdated/removed from the internet. Regardless, I can find the network name from other people 
+
+<img width="1196" height="1015" alt="image" src="https://github.com/user-attachments/assets/011a33d8-a248-4b4b-b1b3-f6caf63e6203" />
+
+Now I search for his home network name on website https://wigle.net/ and it helps me to geolocate his BSSID.
+
+Anwer: 84:AF:EC:34:FC:F8
+
+## Homebound
+
+Based on their tweets, it appears our cybercriminal is indeed heading home as they claimed. Their Twitter account seems to have plenty of photos which should allow us to piece together their route back home. If we follow the trail of breadcrumbs they left behind, we should be able to track their movements from one location to the next back all the way to their final destination. Once we can identify their final stops, we can identify which law enforcement organization we should forward our findings to.
+
+#### What airport is closest to the location the attacker shared a photo from prior to getting on their flight?
+
+Searching this beautiful picture using Google lens we can discover that it was taken in Arlington, Virginia. The closest airport there is Ronald Reagan Washington National Airport (DCA)
+
+Answer: DCA
+
+<img width="1907" height="1083" alt="image" src="https://github.com/user-attachments/assets/0d4eefcb-23fe-49a8-8d4e-8960270e5e77" />
+
+#### What airport did the attacker have their last layover in?
+
+Likewise we search for the next picture, we can see that this lounge room in Tokyo Haneda airport.
+
+Answer: HND
+
+<img width="1900" height="1082" alt="image" src="https://github.com/user-attachments/assets/3c316bcf-4871-41ab-95ad-f7047789ab23" />
+
+#### What lake can be seen in the map shared by the attacker as they were on their final flight home?
+
+Answer: Lake Inawashiro
+
+<img width="1893" height="1007" alt="image" src="https://github.com/user-attachments/assets/a16f8028-7fc8-4326-b6ef-18a3d8264d67" />
+
+#### What city does the attacker likely consider "home"?
+
+Previously on the paste site we could see that Aiko saved Hirosaki free ciy WiFi there, and given that Aiko was flying Northbound from Tokyo, we can deduce that the destination is Hirosaki. 
+
+Answer: Hirosaki
