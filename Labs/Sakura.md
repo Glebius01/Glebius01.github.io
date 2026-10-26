@@ -1,3 +1,13 @@
+---
+layout: default
+title: Sakura room
+platform: TryHackMe
+difficulty: Easy
+skills:
+- OSINT
+description: "Track a cyber attacker using image metadata, GitHub commit histories, cryptocurrency wallet transactions, social media footprints, and Wi-Fi geolocation."
+---
+
 ## TIP-OFF
 
 The OSINT Dojo recently found themselves the victim of a cyber attack. It seems that there is no major damage, and there does not appear to be any other significant indicators of compromise on any of our systems. However during forensic analysis our admins found an image left behind by the cybercriminals. Perhaps it contains some clues that could allow us to determine who the attackers were?
