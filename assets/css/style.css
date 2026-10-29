@@ -19,23 +19,23 @@
   --ease: 0.18s ease;
 
   /* DARK (default) */
-  --bg-primary: #0a0d12;
-  --bg-card: #11161d;
-  --bg-card-hover: #19212b;
+  --bg-primary: #20252c;
+  --bg-card: #272d36;
+  --bg-card-hover: #313843;
   --text-main: #ffffff;              /* headings */
   --text-body: #cfd6df;              /* writeup body text: softer than white */
   --text-muted: #9aa7b8;
-  --border-color: #232d3a;
+  --border-color: #39424e;
   --accent: #3ddc97;
   --accent-contrast: #04120b;
-  --tag-bg: #19212b;
+  --tag-bg: #313843;
   --tag-text: #c3ccd8;
   --focus-ring: #3ddc97;
   --shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.7);
 
-  --code-inline-bg: #19212b;
+  --code-inline-bg: #313843;
   --code-inline-text: #3ddc97;
-  --pre-bg: #05070a;
+  --pre-bg: #14171c;
   --pre-text: #dde4ec;
 
   --neutral-badge-text: #cbd5e1;
@@ -55,30 +55,30 @@ body.light-theme {
   --bg-primary: #fefae0;            /* Cornsilk */
   --bg-card: #fffdf1;
   --bg-card-hover: #f4e9b8;
-  --text-main: #0c1405;             /* Black Forest, much darker */
-  --text-body: #0c1405;
-  --text-muted: #27331a;
+  --text-main: #0b1204;             /* Black Forest, much darker */
+  --text-body: #0b1204;
+  --text-muted: #232e17;
   --border-color: #9a8d4c;
-  --accent: #2f4d0e;                /* Olive Leaf, deeper + more saturated */
+  --accent: #2a460d;                /* Olive Leaf, deeper + more saturated */
   --accent-contrast: #fefae0;
   --tag-bg: rgba(221, 161, 94, 0.45);   /* Light Caramel tint */
-  --tag-text: #0c1405;
+  --tag-text: #0b1204;
   --focus-ring: #a65d16;            /* Copper, slightly deeper */
   --shadow: 0 12px 26px -14px rgba(40, 54, 24, 0.55);
 
   --code-inline-bg: rgba(221, 161, 94, 0.45);
-  --code-inline-text: #6b2c00;
+  --code-inline-text: #602700;
   --pre-bg: #283618;                /* Black Forest block */
   --pre-text: #fefae0;
 
-  --neutral-badge-text: #0c1405;
-  --neutral-badge-border: #2f4d0e;
-  --diff-easy: #1f5a0a;
-  --diff-medium: #8a4005;
-  --diff-hard: #a3140a;
-  --plat-htb: #1f5c00;
-  --plat-thm: #a30f0f;
-  --plat-ld: #054c86;
+  --neutral-badge-text: #0b1204;
+  --neutral-badge-border: #2a460d;
+  --diff-easy: #1c5109;
+  --diff-medium: #7c3a05;
+  --diff-hard: #93120a;
+  --plat-htb: #1c5300;
+  --plat-thm: #930e0e;
+  --plat-ld: #054477;
 }
 
 /* 2. BASE & LAYOUT ----------------------------------------- */
@@ -307,6 +307,19 @@ main img {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+/* Uniform screenshots: same width, height capped, never stretched.
+   Tune the two variables; click an image to see it full size. */
+:root { --img-max-height: 520px; }
+
+.writeup-body img:not(.wc-card img):not([width]):not(.no-resize) {
+  display: block;
+  width: 100%;                       /* every screenshot fills the column */
+  max-height: var(--img-max-height); /* tall ones are capped, not stretched */
+  object-fit: contain;               /* keeps proportions, no cropping */
+  margin: 1.5rem auto;
+  background: var(--bg-card);        /* neutral frame around narrow images */
 }
 
 main blockquote {
@@ -597,6 +610,20 @@ body.lb-open { overflow: hidden; }
 }
 .back-home:hover i, .back-home:focus-visible i { transform: translateX(-3px); }
 .back-home:hover span, .back-home:focus-visible span { max-width: 140px; margin-left: 10px; }
+
+/* 10b. ROOM / MACHINE INFO CARD (writeup-cards) ------------ */
+/* Point the card's documented custom properties at our theme tokens so it
+   follows the Toggle Mode button instead of only the OS setting. Add any other
+   --wc-* names from room-card.css here (text, border, muted...). */
+.writeup-body .wc-card {
+  margin: 0 0 2rem;
+  --wc-surface: var(--bg-card);
+  --wc-link: var(--accent);
+  --wc-font: var(--font-body);
+}
+/* the card's room name is an <h2>; keep it from picking up the "## " writeup heading style */
+.writeup-body .wc-card :is(h2, h3)::before { content: none; }
+.writeup-body .wc-card :is(h2, h3) { margin-top: 0; padding-bottom: 0; border-bottom: 0; }
 
 /* 11. RESPONSIVE & ACCESSIBILITY ---------------------------- */
 @media (max-width: 600px) {
