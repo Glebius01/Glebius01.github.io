@@ -5,7 +5,7 @@ platform: TryHackMe
 difficulty: Easy
 skills:
 - OSINT
-description: "Beginner-friendly OSINT challenge."
+description: "Beginner-friendly OSINT challenge investigating the digital footprint of a fictional company, ACME Jet Solutions. It involves critical thinking, metadata analysis, picture location searches, and general internet browsing."
 ---
 
 ## Summary: 
