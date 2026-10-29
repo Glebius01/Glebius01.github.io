@@ -9,35 +9,38 @@
 
 /* 1. TOKENS ------------------------------------------------ */
 :root {
-  color-scheme: dark;
-
-  --font-body: "Inter", -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, Menlo, Consolas, monospace;
-  --font-header: var(--font-mono);
-
-  --radius: 2px;
-  --ease: 0.18s ease;
-
-  /* DARK (default) */
-  --bg-primary: #20252c;
-  --bg-card: #272d36;
-  --bg-card-hover: #313843;
+   color-scheme: dark;
+@@ -13,29 +22,30 @@
+  --bg-primary: #0a0d12;
+  --bg-card: #11161d;
+  --bg-card-hover: #19212b;
+  --text-main: #ffffff;
   --text-main: #ffffff;              /* headings */
   --text-body: #cfd6df;              /* writeup body text: softer than white */
   --text-muted: #9aa7b8;
-  --border-color: #39424e;
+  --border-color: #232d3a;
   --accent: #3ddc97;
   --accent-contrast: #04120b;
-  --tag-bg: #313843;
+  --tag-bg: #19212b;
+  --tag-text: #d5dde8;
   --tag-text: #c3ccd8;
   --focus-ring: #3ddc97;
   --shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.7);
 
-  --code-inline-bg: #313843;
+  --code-inline-bg: #19212b;
   --code-inline-text: #3ddc97;
-  --pre-bg: #14171c;
+  --pre-bg: #05070a;
+  --pre-text: #e6edf3;
   --pre-text: #dde4ec;
 
+  --neutral-badge-text: #ffffff;
+  --neutral-badge-border: #4b5a6c;
+  --diff-easy: #4ade80;
+  --diff-medium: #fbbf24;
+  --diff-hard: #ff6b6b;
+  --plat-htb: #9fef00;
+  --plat-thm: #ff5c5c;
+  --plat-ld: #38bdf8;
   --neutral-badge-text: #cbd5e1;
   --neutral-badge-border: #46556a;
   --diff-easy: #6fbf8b;
